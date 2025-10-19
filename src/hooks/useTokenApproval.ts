@@ -13,11 +13,13 @@ export function useTokenApproval(
   const { writeContract, data: hash, isPending, error } = useWriteContract();
 
   // Check current allowance
+  const enabled = Boolean(userAddress && spenderAddress && amount > 0n);
   const { data: allowance, refetch: refetchAllowance } = useReadContract({
     address: tokenAddress,
     abi: ERC20_ABI,
     functionName: 'allowance',
-    args: userAddress && spenderAddress ? [userAddress, spenderAddress] : undefined,
+    args: enabled ? [userAddress as `0x${string}`, spenderAddress] : undefined,
+    query: { enabled },
   });
 
   // Wait for approval transaction

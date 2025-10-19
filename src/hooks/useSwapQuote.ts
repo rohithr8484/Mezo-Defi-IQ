@@ -1,5 +1,5 @@
 import { useReadContract } from 'wagmi';
-import { TIGRIS_CONTRACTS, ROUTER_ABI, TOKENS } from '@/lib/tigris';
+import { TIGRIS_CONTRACTS, ROUTER_ABI, TOKENS, TOKEN_DECIMALS } from '@/lib/tigris';
 import { parseUnits } from 'viem';
 import { useEffect } from 'react';
 
@@ -12,7 +12,7 @@ export function useSwapQuote(
   const toAddress = TOKENS[toToken as keyof typeof TOKENS];
 
   const amountInWei = amountIn && Number(amountIn) > 0 
-    ? parseUnits(amountIn, 18)
+    ? parseUnits(amountIn, TOKEN_DECIMALS[fromToken as keyof typeof TOKENS])
     : 0n;
 
   const { data: amounts, isLoading, refetch } = useReadContract({

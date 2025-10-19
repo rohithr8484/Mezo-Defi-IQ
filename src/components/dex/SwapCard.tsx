@@ -4,18 +4,18 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowDownUp, Settings, Loader2, CheckCircle2 } from 'lucide-react';
-import { TIGRIS_CONTRACTS, ROUTER_ABI, TOKENS, type TokenSymbol } from '@/lib/tigris';
+import { TIGRIS_CONTRACTS, ROUTER_ABI, TOKENS, TOKEN_DECIMALS, type TokenSymbol } from '@/lib/tigris';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseUnits, formatUnits } from 'viem';
 import { toast } from 'sonner';
 import { useTokenApproval } from '@/hooks/useTokenApproval';
 import { useSwapQuote } from '@/hooks/useSwapQuote';
 
-const AVAILABLE_TOKENS: TokenSymbol[] = ['WBTC', 'MUSD', 'mUSDC', 'mUSDT'];
+const AVAILABLE_TOKENS: TokenSymbol[] = ['BTC', 'MUSD', 'mUSDC', 'mUSDT'];
 
 export const SwapCard = () => {
   const { address, chain } = useAccount();
-  const [fromToken, setFromToken] = useState<TokenSymbol>('WBTC');
+  const [fromToken, setFromToken] = useState<TokenSymbol>('BTC');
   const [toToken, setToToken] = useState<TokenSymbol>('MUSD');
   const [fromAmount, setFromAmount] = useState('');
   const [slippage, setSlippage] = useState('0.5');
@@ -28,15 +28,15 @@ export const SwapCard = () => {
   });
 
   // Get quote for swap
-  const { amountOut, isLoading: isQuoteLoading } = useSwapQuote(
+const { amountOut, isLoading: isQuoteLoading } = useSwapQuote(
     fromToken,
     toToken,
     fromAmount
   );
 
   // Token approval hook
-  const amountInWei = fromAmount && Number(fromAmount) > 0 
-    ? parseUnits(fromAmount, 18) 
+const amountInWei = fromAmount && Number(fromAmount) > 0 
+    ? parseUnits(fromAmount, TOKEN_DECIMALS[fromToken]) 
     : 0n;
 
   const fromTokenAddress = TOKENS[fromToken] as `0x${string}`;
@@ -99,7 +99,7 @@ export const SwapCard = () => {
 
     // Step 2: Execute swap
     try {
-      const amountInBigInt = parseUnits(fromAmount, 18);
+      const amountInBigInt = parseUnits(fromAmount, TOKEN_DECIMALS[fromToken]);
       const deadline = BigInt(Math.floor(Date.now() / 1000) + 1200); // 20 minutes
       
       // Calculate minimum output with slippage
@@ -149,7 +149,7 @@ export const SwapCard = () => {
     isSwapConfirming;
 
   const formattedAmountOut = amountOut > 0n 
-    ? formatUnits(amountOut, 18) 
+    ? formatUnits(amountOut, TOKEN_DECIMALS[toToken]) 
     : '0';
 
   return (

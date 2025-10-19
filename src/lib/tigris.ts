@@ -9,13 +9,20 @@ export const TIGRIS_CONTRACTS = {
   },
 } as const;
 
-// Token addresses (Mezo Mainnet)
+// Token addresses (Mezo Mainnet) - from official docs
 export const TOKENS = {
-  WBTC: '0x5832F53d147b3d6Cd4578B9CBD62425C7ea9d0Bd', // Wrapped BTC on Mezo
-  MUSD: '0xdd468a1Ddc392DCDbef6DB6E34E89aa338F9f186', // Mezo USD stablecoin
-  mUSDC: '0x5A7a183B6B44Dc4EC2E3d2eF43F98C5152b1d76d', // Bridged USDC
-  mUSDT: '0xc55E93C62874D8100dBd2DfE307EDc1036ad5434', // Bridged USDT
+  BTC: '0x7b7C000000000000000000000000000000000000', // tBTC on Mezo (native BTC representation)
+  MUSD: '0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186', // Mezo USD stablecoin (proxy)
+  mUSDC: '0x04671C72Aab5AC02A03c1098314b1BB6B560c197', // Bridged USDC
+  mUSDT: '0xeB5a5d39dE4Ea42C2Aa6A57EcA2894376683bB8E', // Bridged USDT
 } as const;
+
+export const TOKEN_DECIMALS: Record<keyof typeof TOKENS, number> = {
+  BTC: 18,
+  MUSD: 18,
+  mUSDC: 6,
+  mUSDT: 6,
+};
 
 export type TokenSymbol = keyof typeof TOKENS;
 export type PoolPair = keyof typeof TIGRIS_CONTRACTS.pools;
