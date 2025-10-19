@@ -1,5 +1,4 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { http } from 'wagmi';
+import { getDefaultConfig, Chain } from '@rainbow-me/rainbowkit';
 
 // Mezo mainnet configuration
 export const mezoMainnet = {
@@ -15,21 +14,15 @@ export const mezoMainnet = {
       http: ['https://mainnet.mezo.validationcloud.io/v1/p_xemd5HnZI0yCNZwH_bjpShkEgurvMTlN9xPATAId0'],
       webSocket: ['wss://rpc-ws.mezo.boar.network/81YcmV8cjuhVuCdoidBcGlWIC0rSfy4c'],
     },
-    public: {
-      http: ['https://mainnet.mezo.validationcloud.io/v1/p_xemd5HnZI0yCNZwH_bjpShkEgurvMTlN9xPATAId0'],
-      webSocket: ['wss://rpc-ws.mezo.boar.network/81YcmV8cjuhVuCdoidBcGlWIC0rSfy4c'],
-    },
   },
   blockExplorers: {
     default: { name: 'Mezo Explorer', url: 'https://explorer.mezo.org' },
   },
-} as const;
+} as const satisfies Chain;
 
 export const config = getDefaultConfig({
   appName: 'Mezo DeFi',
-  projectId: 'YOUR_PROJECT_ID', // Get from WalletConnect Cloud
+  projectId: process.env.WALLETCONNECT_PROJECT_ID || 'c3b5c9a5e1d4f8c7b2a6e9d3f1c8b5a7',
   chains: [mezoMainnet],
-  transports: {
-    [mezoMainnet.id]: http(),
-  },
+  ssr: false,
 });
