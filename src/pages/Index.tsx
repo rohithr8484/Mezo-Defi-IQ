@@ -4,6 +4,7 @@ import { PositionCard } from '@/components/dashboard/PositionCard';
 import { BorrowCard } from '@/components/dashboard/BorrowCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { SwapCard } from '@/components/dex/SwapCard';
+import { PythFeedCard } from '@/components/pyth/PythFeedCard';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { getBTCPrice } from '@/lib/pyth';
@@ -14,6 +15,7 @@ import { Bitcoin, TrendingUp, Shield, Zap } from 'lucide-react';
 const Index = () => {
   const { isConnected } = useAccount();
   const [btcPrice, setBtcPrice] = useState(98000);
+  const [priceData, setPriceData] = useState<{ price: number; timestamp: number; conf: number } | null>(null);
   const [collateral, setCollateral] = useState(0);
   const [borrowed, setBorrowed] = useState(0);
   const [addCollateralOpen, setAddCollateralOpen] = useState(false);
@@ -24,6 +26,11 @@ const Index = () => {
       const price = await getBTCPrice();
       if (price) {
         setBtcPrice(price.price);
+        setPriceData({
+          price: price.price,
+          timestamp: price.timestamp,
+          conf: price.conf,
+        });
       }
     };
 
@@ -128,6 +135,17 @@ const Index = () => {
           </div>
         </section>
       )}
+
+      {/* Pyth Feed Display */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto">
+          <PythFeedCard 
+            price={priceData?.price || btcPrice} 
+            timestamp={priceData?.timestamp}
+            conf={priceData?.conf}
+          />
+        </div>
+      </section>
 
       {/* Dashboard */}
       {isConnected && (
