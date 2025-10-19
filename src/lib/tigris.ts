@@ -9,12 +9,12 @@ export const TIGRIS_CONTRACTS = {
   },
 } as const;
 
-// Token addresses
+// Token addresses (Mezo Mainnet)
 export const TOKENS = {
-  BTC: '0x0000000000000000000000000000000000000000', // Native BTC
-  MUSD: '0x...',  // Replace with actual MUSD address
-  mUSDC: '0x...', // Replace with actual mUSDC address
-  mUSDT: '0x...', // Replace with actual mUSDT address
+  WBTC: '0x5832F53d147b3d6Cd4578B9CBD62425C7ea9d0Bd', // Wrapped BTC on Mezo
+  MUSD: '0xdd468a1Ddc392DCDbef6DB6E34E89aa338F9f186', // Mezo USD stablecoin
+  mUSDC: '0x5A7a183B6B44Dc4EC2E3d2eF43F98C5152b1d76d', // Bridged USDC
+  mUSDT: '0xc55E93C62874D8100dBd2DfE307EDc1036ad5434', // Bridged USDT
 } as const;
 
 export type TokenSymbol = keyof typeof TOKENS;
