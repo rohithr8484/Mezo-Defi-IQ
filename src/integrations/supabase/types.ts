@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      arbitrage_opportunities: {
+        Row: {
+          created_at: string
+          estimated_profit_usd: number
+          executed_at: string | null
+          gas_cost_usd: number
+          id: string
+          net_profit_usd: number
+          profit_percentage: number
+          source_price: number
+          source_protocol: string
+          status: string
+          target_price: number
+          target_protocol: string
+          token_pair: string
+          trade_amount: number
+          tx_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          estimated_profit_usd: number
+          executed_at?: string | null
+          gas_cost_usd: number
+          id?: string
+          net_profit_usd: number
+          profit_percentage: number
+          source_price: number
+          source_protocol: string
+          status?: string
+          target_price: number
+          target_protocol: string
+          token_pair: string
+          trade_amount: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          estimated_profit_usd?: number
+          executed_at?: string | null
+          gas_cost_usd?: number
+          id?: string
+          net_profit_usd?: number
+          profit_percentage?: number
+          source_price?: number
+          source_protocol?: string
+          status?: string
+          target_price?: number
+          target_protocol?: string
+          token_pair?: string
+          trade_amount?: number
+          tx_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

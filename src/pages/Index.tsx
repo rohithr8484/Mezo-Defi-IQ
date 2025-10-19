@@ -5,6 +5,7 @@ import { BorrowCard } from '@/components/dashboard/BorrowCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { SwapCard } from '@/components/dex/SwapCard';
 import { PythFeedCard } from '@/components/pyth/PythFeedCard';
+import { ArbitrageMonitor } from '@/components/arbitrage/ArbitrageMonitor';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { getBTCPrice } from '@/lib/pyth';
@@ -184,6 +185,11 @@ const Index = () => {
             {/* Tigris DEX Swap */}
             <div className="mt-6">
               <SwapCard />
+            </div>
+
+            {/* Arbitrage Monitor */}
+            <div className="mt-6">
+              <ArbitrageMonitor />
             </div>
           </div>
         </section>
