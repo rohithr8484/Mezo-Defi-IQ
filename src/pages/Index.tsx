@@ -3,6 +3,7 @@ import { ConnectButton } from '@/components/wallet/ConnectButton';
 import { PositionCard } from '@/components/dashboard/PositionCard';
 import { BorrowCard } from '@/components/dashboard/BorrowCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
+import { SwapCard } from '@/components/dex/SwapCard';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { getBTCPrice } from '@/lib/pyth';
@@ -149,6 +150,11 @@ const Index = () => {
               />
 
               <BorrowCard btcPrice={btcPrice} onBorrow={handleBorrow} />
+            </div>
+
+            {/* Tigris DEX Swap */}
+            <div className="mt-6">
+              <SwapCard />
             </div>
           </div>
         </section>

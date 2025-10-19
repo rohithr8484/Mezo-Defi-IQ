@@ -1,6 +1,9 @@
 import { PriceServiceConnection } from '@pythnetwork/price-service-client';
 
-// Pyth Network price service
+// Mezo Mainnet Pyth Contract Address
+export const PYTH_CONTRACT_ADDRESS = '0x2880aB155794e7179c9eE2e38200202908C17B43';
+
+// Pyth Network price service (updates every 400ms for low-latency)
 const priceService = new PriceServiceConnection('https://hermes.pyth.network', {
   priceFeedRequestConfig: {
     binary: true,

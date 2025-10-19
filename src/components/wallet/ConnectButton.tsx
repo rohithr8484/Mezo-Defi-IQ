@@ -1,5 +1,6 @@
 import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import { Button } from '@/components/ui/button';
+import { Shield } from 'lucide-react';
 
 export const ConnectButton = () => {
   return (
@@ -29,9 +30,20 @@ export const ConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <Button onClick={openConnectModal} variant="hero" size="lg">
-                    Connect Wallet
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button onClick={openConnectModal} variant="hero" size="lg">
+                      Connect Wallet
+                    </Button>
+                    <Button 
+                      onClick={openConnectModal} 
+                      variant="outline" 
+                      size="lg"
+                      className="hidden sm:flex gap-2"
+                    >
+                      <Shield className="h-4 w-4" />
+                      Mezo Passport
+                    </Button>
+                  </div>
                 );
               }
 
