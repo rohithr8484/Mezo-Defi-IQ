@@ -30,15 +30,15 @@ export const ConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <div className="flex gap-2">
-                    <Button onClick={openConnectModal} variant="hero" size="lg">
+                  <div className="flex gap-2 animate-fade-in">
+                    <Button onClick={openConnectModal} variant="hero" size="lg" className="hover-lift hover-glow">
                       Connect Wallet
                     </Button>
                     <Button 
                       onClick={openConnectModal} 
                       variant="outline" 
                       size="lg"
-                      className="hidden sm:flex gap-2"
+                      className="hidden sm:flex gap-2 hover-lift"
                     >
                       <Shield className="h-4 w-4" />
                       Mezo Passport

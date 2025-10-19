@@ -71,23 +71,32 @@ const Index = () => {
   const maxWithdraw = Math.max(0, collateral - (borrowed / btcPrice) * 1.5);
 
   return (
-    <div className="min-h-screen bg-[var(--gradient-hero)]">
+    <div className="min-h-screen bg-[var(--gradient-hero)] relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float [animation-delay:1s]" />
+      </div>
+      
+      <div className="relative z-10">
       {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm">
+      <header className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-glow)]">
-                <Bitcoin className="h-6 w-6 text-primary-foreground" />
+            <div className="flex items-center gap-3 animate-slide-in-left">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-glow)] animate-glow">
+                <Bitcoin className="h-6 w-6 text-primary-foreground animate-pulse" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold gradient-text">
                   Mezo DeFi
                 </h1>
                 <p className="text-xs text-muted-foreground">Bitcoin-Backed Stablecoin Protocol</p>
               </div>
             </div>
-            <ConnectButton />
+            <div className="animate-slide-in-right">
+              <ConnectButton />
+            </div>
           </div>
         </div>
       </header>
@@ -96,36 +105,36 @@ const Index = () => {
       {!isConnected && (
         <section className="container mx-auto px-4 py-20 text-center">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="space-y-4">
+            <div className="space-y-4 animate-fade-in-up">
               <h2 className="text-5xl md:text-6xl font-bold leading-tight">
                 Unlock Bitcoin's
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                <span className="gradient-text animate-shimmer bg-[length:200%_auto]">
                   {' '}Full Potential
                 </span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in [animation-delay:200ms]">
                 Borrow MUSD against your Bitcoin at 1% fixed rates. Maintain full control, 
                 add collateral anytime, and deploy across DeFi.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20">
-                <TrendingUp className="h-10 w-10 text-primary mb-3 mx-auto" />
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:300ms]">
+                <TrendingUp className="h-10 w-10 text-primary mb-3 mx-auto animate-float" />
                 <h3 className="font-semibold mb-2">1% Fixed Rate</h3>
                 <p className="text-sm text-muted-foreground">
                   Predictable borrowing costs with no variable rates
                 </p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20">
-                <Shield className="h-10 w-10 text-accent mb-3 mx-auto" />
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:400ms]">
+                <Shield className="h-10 w-10 text-accent mb-3 mx-auto animate-float [animation-delay:200ms]" />
                 <h3 className="font-semibold mb-2">Full Control</h3>
                 <p className="text-sm text-muted-foreground">
                   Manage your position, add or withdraw collateral anytime
                 </p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20">
-                <Zap className="h-10 w-10 text-success mb-3 mx-auto" />
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:500ms]">
+                <Zap className="h-10 w-10 text-success mb-3 mx-auto animate-float [animation-delay:400ms]" />
                 <h3 className="font-semibold mb-2">DeFi Ready</h3>
                 <p className="text-sm text-muted-foreground">
                   Deploy MUSD across DeFi to earn yield and cover costs
@@ -138,7 +147,7 @@ const Index = () => {
 
       {/* Pyth Feed Display */}
       <section className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto animate-scale-in">
           <PythFeedCard 
             price={priceData?.price || btcPrice} 
             timestamp={priceData?.timestamp}
@@ -151,13 +160,15 @@ const Index = () => {
       {isConnected && (
         <section className="container mx-auto px-4 py-8">
           <div className="space-y-6">
-            <StatsCard
-              btcPrice={btcPrice}
-              totalCollateral={collateral}
-              totalBorrowed={borrowed}
-            />
+            <div className="animate-fade-in">
+              <StatsCard
+                btcPrice={btcPrice}
+                totalCollateral={collateral}
+                totalBorrowed={borrowed}
+              />
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
               <PositionCard
                 collateral={collateral}
                 borrowed={borrowed}
@@ -193,6 +204,7 @@ const Index = () => {
         maxWithdraw={maxWithdraw}
         btcPrice={btcPrice}
       />
+      </div>
     </div>
   );
 };

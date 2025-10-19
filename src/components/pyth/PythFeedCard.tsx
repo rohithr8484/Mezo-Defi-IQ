@@ -27,14 +27,14 @@ export const PythFeedCard = ({ price, timestamp, conf }: PythFeedCardProps) => {
   }, [timestamp]);
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-card border-primary/30">
+    <Card className="p-6 bg-gradient-to-br from-primary/10 via-card to-card border-primary/30 hover-glow card-hover animate-fade-in">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Activity className="h-5 w-5 text-primary animate-pulse" />
           <h3 className="text-lg font-semibold">Pyth Price Feed</h3>
         </div>
-        <Badge variant="outline" className="gap-1">
-          <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+        <Badge variant="outline" className="gap-1 animate-pulse">
+          <div className="h-2 w-2 rounded-full bg-green-500" />
           Live
         </Badge>
       </div>
@@ -42,15 +42,15 @@ export const PythFeedCard = ({ price, timestamp, conf }: PythFeedCardProps) => {
       <div className="space-y-4">
         {/* Main Price Display */}
         <div className="text-center py-4">
-          <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="flex items-center justify-center gap-2 mb-2 animate-slide-in-left">
             <TrendingUp className="h-6 w-6 text-primary" />
             <span className="text-sm text-muted-foreground">BTC/USD</span>
           </div>
-          <div className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <div className="text-5xl font-bold gradient-text animate-shimmer bg-[length:200%_auto] [animation-delay:200ms]">
             {formatPrice(price)}
           </div>
           {conf && (
-            <div className="text-sm text-muted-foreground mt-2">
+            <div className="text-sm text-muted-foreground mt-2 animate-fade-in [animation-delay:300ms]">
               ±{formatPrice(conf)} confidence
             </div>
           )}

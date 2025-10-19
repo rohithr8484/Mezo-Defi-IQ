@@ -153,10 +153,10 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
     : '0';
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-card/80 border-primary/20">
+    <Card className="p-6 bg-gradient-to-br from-card to-card/80 border-primary/20 hover-glow card-hover animate-fade-in [animation-delay:200ms]">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold">Swap</h2>
-        <Button variant="ghost" size="sm">
+        <h2 className="text-2xl font-bold gradient-text">Swap</h2>
+        <Button variant="ghost" size="sm" className="hover-lift">
           <Settings className="h-4 w-4" />
         </Button>
       </div>
@@ -205,7 +205,7 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
             variant="outline"
             size="sm"
             onClick={handleSwapTokens}
-            className="rounded-full"
+            className="rounded-full hover-lift hover:rotate-180 transition-all duration-500"
             disabled={isApproving || isSwapping || isSwapConfirming}
           >
             <ArrowDownUp className="h-4 w-4" />
@@ -266,11 +266,11 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
 
         {/* Swap Progress */}
         {(isApproving || isApproved || isSwapping || isSwapConfirming) && (
-          <div className="p-4 rounded-lg bg-muted/50 space-y-2">
+          <div className="p-4 rounded-lg bg-muted/50 space-y-2 animate-slide-in-right">
             <div className="flex items-center justify-between text-sm">
               <span>1. Token Approval</span>
               {isApproved ? (
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-green-500 animate-scale-in" />
               ) : isApproving ? (
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
               ) : (
@@ -280,7 +280,7 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
             <div className="flex items-center justify-between text-sm">
               <span>2. Execute Swap</span>
               {isSwapSuccess ? (
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CheckCircle2 className="h-4 w-4 text-green-500 animate-scale-in" />
               ) : isSwapping || isSwapConfirming ? (
                 <Loader2 className="h-4 w-4 animate-spin text-primary" />
               ) : (
@@ -312,7 +312,7 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
 
         <Button
           onClick={handleSwap}
-          className="w-full"
+          className="w-full hover-lift hover-glow"
           size="lg"
           disabled={isButtonDisabled}
         >
