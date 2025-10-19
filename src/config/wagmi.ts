@@ -22,7 +22,7 @@ export const mezoMainnet = {
 
 export const config = getDefaultConfig({
   appName: 'Mezo DeFi',
-  projectId: process.env.WALLETCONNECT_PROJECT_ID || 'c3b5c9a5e1d4f8c7b2a6e9d3f1c8b5a7',
+  projectId: '00000000000000000000000000000000', // Replace with your WalletConnect Project ID in production
   chains: [mezoMainnet],
   ssr: false,
 });

@@ -26,19 +26,22 @@ export async function getBTCPrice(): Promise<PriceData | null> {
       return null;
     }
 
-    const priceFeed = priceFeeds[0];
-    const price = priceFeed.getPriceNoOlderThan(60); // Price no older than 60 seconds
-    
-    if (!price) {
+    const feed = priceFeeds[0] as any;
+    const p = feed?.price;
+
+    if (!p || p.price === undefined || p.expo === undefined) {
       console.error('No valid price data');
       return null;
     }
 
+    const priceValue = Number(p.price) * Math.pow(10, p.expo);
+    const confValue = p.conf !== undefined ? Number(p.conf) * Math.pow(10, p.expo) : 0;
+
     return {
-      price: Number(price.price) * Math.pow(10, price.expo),
-      expo: price.expo,
-      conf: Number(price.conf) * Math.pow(10, price.expo),
-      timestamp: price.publishTime,
+      price: priceValue,
+      expo: p.expo,
+      conf: confValue,
+      timestamp: feed?.publishTime ?? Date.now() / 1000,
     };
   } catch (error) {
     console.error('Error fetching BTC price:', error);
