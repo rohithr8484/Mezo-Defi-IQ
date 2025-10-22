@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+# ⚙️ Institutional-Grade Bitcoin DeFi System
 
-## Project info
+This project represents a **sophisticated cross-protocol DeFi platform** designed to **unlock Bitcoin’s full financial potential** through **composable**, **automated**, and **institutionally robust strategies**.
 
-**URL**: https://lovable.dev/projects/5cfebd2e-666b-4a20-a00d-ba07524661c4
+It unifies **real-time market intelligence**, **capital-efficient lending**, and **cross-protocol arbitrage execution** into one cohesive ecosystem — enabling professional-grade yield generation, liquidity optimization, and portfolio automation on Bitcoin.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🔧 Core Capabilities
 
-**Use Lovable**
+### ⚡ Cross-Protocol Arbitrage Engine
+- Scans and exploits **MUSD/BTC price disparities** across **Tigris DEX** and **Pyth Oracle** in real time.  
+- **Backend scanner** updates every **400 ms**, identifying arbitrage spreads and pushing **live trade alerts** to the dashboard.  
+- Integrated **Arbitrage Dashboard** visualizes **profit margins**, **trade readiness**, and **capital utilization efficiency** for precision execution.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5cfebd2e-666b-4a20-a00d-ba07524661c4) and start prompting.
+### 🔄 Smart Swap Module
+- Implements a **2-step swap flow (Approve → Swap)** with **slippage control** and **transaction status tracking**.  
+- Fetches **real-time price quotes** directly from the **Tigris Router** to guarantee optimal routing and full transparency.  
+- Robust **error handling**, **wallet validation**, and **transaction integrity checks** ensure a smooth, reliable trading experience.
 
-Changes made via Lovable will be committed automatically to this repo.
+### 📊 Pyth Oracle Integration
+- Utilizes **Pyth Network’s ultra-low-latency BTC/USD feed** (e.g. *$106,780.21*, updated every 400 ms).  
+- **On-chain verification** via **Mezo Mainnet** ensures **accurate, tamper-proof price data**.  
+- Incorporates **confidence intervals** and **timestamp validation** mechanisms for **high-frequency, low-latency trading strategies**.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 💸 Lending & Collateral Framework
+- **Borrow MUSD against BTC** at a **1 % fixed interest rate** while maintaining **full custody** of your collateral.  
+- Real-time **collateral ratio tracking** and **risk assessment** ensure continuous portfolio visibility.  
+- Dynamically **add**, **withdraw**, or **rebalance collateral** for adaptive liquidity management.  
+- Comprehensive **loan health monitoring** and **ROI analytics** displayed through an intuitive interface.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🔐 Wallet & Integration Layer
+- **Seamless wallet connectivity** via **Mezo Passport** and **RainbowKit** for instant access.  
+- **Direct Pyth Network price feeds** deliver **sub-second precision** and verifiable on-chain accuracy.  
+- **Modular backend architecture** enables composability with other DeFi protocols, liquidity layers, and arbitrage systems.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🧩 Advanced & Upcoming Features
+- **Automated Yield Strategies** – Deploy idle collateral into optimized yield loops for **passive income generation**.  
+- **Liquidation Protection** – AI-driven **auto-collateral adjustments** to mitigate liquidation risk.  
+- **Multi-Position Portfolio Management** – Track, analyze, and rebalance positions across **multiple chains and protocols**.  
+- **Institutional Analytics Dashboard** – Access **profit/loss**, **volatility**, and **Sharpe ratio** metrics for data-driven decisions.  
+- **Derivatives Expansion** – Upcoming modules for **BTC options**, **perpetuals**, and **structured yield vaults**.
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠 Tech Stack
+
+### Frontend
+- **React 18** – Modern UI framework  
+- **TypeScript** – Type-safe development  
+- **Tailwind CSS** – Utility-first styling  
+- **Radix UI** – Accessible component primitives  
+
+### Blockchain & Wallet Integration
+- `@mezo-org/passport` – Bitcoin wallet connectivity  
+- **RainbowKit** – Wallet management  
+- **Sats Connect** – Bitcoin transaction handling  
+- **Wagmi + Viem** – Blockchain interaction layer  
+- **MUSD Integration** – Stablecoin operations  
+
+### State Management & Forms
+- **React Query** – Server state management  
+- **Zod** – Schema validation  
+- **React Hook Form** – Form handling  
+
+### UI Components & Visualization
+- **Lucide Icons** – Beautiful iconography  
+- **Sonner** – Toast notifications  
+- **Recharts** – Data visualization  
+- **Embla Carousel** – Smooth carousels  
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/simple-financial-services.git
+cd simple-financial-services
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+## 🌐 Vision: Institutional-Grade Bitcoin Finance
+Our mission is to **build the next generation of Bitcoin-based financial infrastructure**, empowering sophisticated users and institutions to maximize capital efficiency through advanced DeFi strategies.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+We are creating a **complete ecosystem** built on **trust**, **transparency**, and **automation**, designed for power users, funds, and algorithmic traders.
 
-**Use GitHub Codespaces**
+### Key Objectives
+- **Recursive Lending & Yield Loops** for compounding growth  
+- **Automated Arbitrage & Liquidation Engines** for optimized execution  
+- **Cross-Protocol Liquidity Routing** for deep market access  
+- **Institutional-Grade Vaults** for risk-managed yield strategies  
+- **Advanced Derivatives & Hedging Tools** built on Bitcoin’s liquidity and transparency  
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5cfebd2e-666b-4a20-a00d-ba07524661c4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+> **This is DeFi reimagined for institutional performance** — combining **Bitcoin’s trust layer** with **modern DeFi composability** to deliver a secure, scalable, and capital-efficient financial future.
