@@ -96,6 +96,7 @@ Our platform leverages the security and efficiency of:
 
 ## Components
 
+<img width="407" height="372" alt="image" src="https://github.com/user-attachments/assets/a3ff980e-d0bc-4069-a0ac-c1b3b7f0f77f" />
 
 
 ## 🚀 Quick Start
