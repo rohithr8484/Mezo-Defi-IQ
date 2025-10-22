@@ -105,7 +105,7 @@ Our platform leverages the security and efficiency of:
 ```bash
 # Clone the repository
 git clone https://github.com/rohithr8484/mezo-btc-yield-hub.git
-cd simple-financial-services
+cd mezo-btc-yield-hub
 
 # Install dependencies
 npm install
