@@ -94,6 +94,49 @@ Our platform leverages the security and efficiency of:
 - **Transparency** - Clear fees and operations
 - **Security** - Built on proven blockchain technology
 
+## Components
+
+
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/simple-financial-services.git
+cd simple-financial-services
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open your browser at `http://localhost:5173`
+
+## 🔧 Development
+
+### Available Scripts
+
+```bash
+# Development server
+npm run dev
+
+# Production build
+npm run build
+
+# Development build
+npm run build:dev
+
+# Preview production build
+npm run preview
+
+# Linting
+npm run lint
+```
+
 ## 🤝 Contributing
 
 We welcome contributions! Please feel free to submit pull requests or open issues to help improve Simple Financial Services.
