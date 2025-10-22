@@ -90,6 +90,8 @@ npm install
 # Start development server
 npm run dev
 
+---
+
 ## 🧩 Usage
 
 ### 🛡 Built on Trust & Security
