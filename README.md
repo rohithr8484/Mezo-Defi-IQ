@@ -90,16 +90,3 @@ npm install
 # Start development server
 npm run dev
 
-## 🌐 Vision: Institutional-Grade Bitcoin Finance
-Our mission is to **build the next generation of Bitcoin-based financial infrastructure**, empowering sophisticated users and institutions to maximize capital efficiency through advanced DeFi strategies.
-
-We are creating a **complete ecosystem** built on **trust**, **transparency**, and **automation**, designed for power users, funds, and algorithmic traders.
-
-### Key Objectives
-- **Recursive Lending & Yield Loops** for compounding growth  
-- **Automated Arbitrage & Liquidation Engines** for optimized execution  
-- **Cross-Protocol Liquidity Routing** for deep market access  
-- **Institutional-Grade Vaults** for risk-managed yield strategies  
-- **Advanced Derivatives & Hedging Tools** built on Bitcoin’s liquidity and transparency  
-
-> **This is DeFi reimagined for institutional performance** — combining **Bitcoin’s trust layer** with **modern DeFi composability** to deliver a secure, scalable, and capital-efficient financial future.
