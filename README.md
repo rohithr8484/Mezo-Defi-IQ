@@ -90,3 +90,28 @@ npm install
 # Start development server
 npm run dev
 
+## 🧩 Usage
+
+### 🛡 Built on Trust & Security
+Our platform leverages the security and efficiency of:  
+- **Mezo Network** – For fast, low-cost transactions  
+- **MUSD Stablecoin** – For price stability and reliability  
+- **Bitcoin Security** – Through integrated wallet support  
+
+### 💡 Core Principles
+- **Simplicity** – Manage your assets without complexity  
+- **Accessibility** – Open institutional-grade tools to everyone  
+- **Transparency** – Clear operations, visible on-chain  
+- **Security** – Built atop Bitcoin and proven blockchain technology  
+
+### 🤝 Contributing
+We welcome contributions! Please feel free to submit pull requests or open issues to help improve the **Institutional-Grade Bitcoin DeFi System**.  
+
+### 📄 License
+This project is **proprietary**. Please contact the maintainers for access and usage information.  
+
+### ⚙️ Institutional-Grade Bitcoin DeFi System
+**Unlock Bitcoin’s full potential — Automated, Secure, and Institutional-Grade.**  
+Built on **Mezo**, powered by **Pyth**. 🚀
+
+
