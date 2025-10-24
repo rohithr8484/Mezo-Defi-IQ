@@ -11,7 +11,7 @@ import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
-import { Bitcoin, TrendingUp, Shield, Zap } from 'lucide-react';
+import { Bitcoin, TrendingUp, Shield, Zap, Wallet, DollarSign, ArrowLeftRight, Activity, Bot, RefreshCw } from 'lucide-react';
 import mezoLogo from '@/assets/mezo-logo.png';
 
 const Index = () => {
@@ -146,6 +146,155 @@ const Index = () => {
           </div>
         </section>
       )}
+
+      {/* How It Works Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+              ⚙️ How It Works
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Get started with Mezo DeFi - Simple financial services without the complexity
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Step 1 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+                  1
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <Wallet className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">No Collateral MUSD</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Instantly access MUSD without requiring collateral, enabling users to engage with the platform quickly and efficiently.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+                  2
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <DollarSign className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Borrow MUSD</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Borrow MUSD for liquidity needs, DeFi strategies, or trading purposes with flexible terms and competitive rates.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+                  3
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <ArrowLeftRight className="h-6 w-6 text-success" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Swap</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Seamlessly swap between MUSD and other supported assets directly on the platform, making transactions fast and convenient.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+                  4
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <Activity className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Arbitrage Monitor</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Monitor cross-protocol opportunities in real time, helping advanced users identify profitable arbitrage trades automatically.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+              💡 Use Cases
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real financial services for everyday needs - no crypto knowledge required
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Use Case 1 */}
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <TrendingUp className="h-7 w-7 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl mb-3">💸 DeFi & Yield Strategies</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Utilize MUSD for multi-layered yield farming, looping strategies, and liquidity optimization.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Use Case 2 */}
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <Bot className="h-7 w-7 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl mb-3">🤖 Trading & Arbitrage</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Monitor and execute arbitrage opportunities across protocols for capital efficiency.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Use Case 3 */}
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                  <RefreshCw className="h-7 w-7 text-success" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl mb-3">🔄 Swaps & Portfolio Management</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Quickly swap assets and manage portfolios with minimal friction.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Pyth Feed Display */}
       <section className="container mx-auto px-4 py-8">
