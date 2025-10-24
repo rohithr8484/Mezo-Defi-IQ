@@ -76,18 +76,22 @@ const Index = () => {
     <div className="min-h-screen bg-[var(--gradient-hero)] relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float [animation-delay:1s]" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float morph-blob" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float morph-blob [animation-delay:1s]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-3xl animate-pulse" />
+        
+        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       </div>
       
       <div className="relative z-10">
       {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
+      <header className="border-b border-border/50 backdrop-blur-md sticky top-0 z-50 bg-background/80 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 animate-slide-in-left">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-accent to-primary-glow flex items-center justify-center shadow-[var(--shadow-glow)] hover-glow p-1">
-                <img src={mezoLogo} alt="Mezo DeFi" className="h-full w-full object-contain" />
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-accent to-primary-glow flex items-center justify-center shadow-[var(--shadow-glow)] hover-glow p-1 glow-pulse">
+                <img src={mezoLogo} alt="Mezo DeFi" className="h-full w-full object-contain animate-float" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold gradient-text">
@@ -105,40 +109,43 @@ const Index = () => {
 
       {/* Hero Section */}
       {!isConnected && (
-        <section className="container mx-auto px-4 py-20 text-center">
+        <section className="container mx-auto px-4 py-20 text-center relative">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="space-y-4 animate-fade-in-up">
-              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+            <div className="space-y-4 slide-up-fade">
+              <h2 className="text-5xl md:text-7xl font-bold leading-tight text-glow">
                 Unlock Bitcoin's
-                <span className="gradient-text animate-shimmer bg-[length:200%_auto]">
+                <span className="gradient-text animate-shimmer bg-[length:200%_auto] inline-block">
                   {' '}Full Potential
                 </span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in [animation-delay:200ms]">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto slide-up-fade stagger-1">
                 Borrow MUSD against your Bitcoin at 1% fixed rates. Maintain full control, 
                 add collateral anytime, and deploy across DeFi.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mt-12">
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:300ms]">
-                <TrendingUp className="h-10 w-10 text-primary mb-3 mx-auto animate-float" />
-                <h3 className="font-semibold mb-2">1% Fixed Rate</h3>
-                <p className="text-sm text-muted-foreground">
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover slide-up-fade stagger-2 gradient-border group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <TrendingUp className="h-10 w-10 text-primary mb-3 mx-auto animate-float relative z-10" />
+                <h3 className="font-semibold mb-2 relative z-10">1% Fixed Rate</h3>
+                <p className="text-sm text-muted-foreground relative z-10">
                   Predictable borrowing costs with no variable rates
                 </p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:400ms]">
-                <Shield className="h-10 w-10 text-accent mb-3 mx-auto animate-float [animation-delay:200ms]" />
-                <h3 className="font-semibold mb-2">Full Control</h3>
-                <p className="text-sm text-muted-foreground">
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-accent/20 hover-lift card-hover slide-up-fade stagger-3 gradient-border group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Shield className="h-10 w-10 text-accent mb-3 mx-auto animate-float [animation-delay:200ms] relative z-10" />
+                <h3 className="font-semibold mb-2 relative z-10">Full Control</h3>
+                <p className="text-sm text-muted-foreground relative z-10">
                   Manage your position, add or withdraw collateral anytime
                 </p>
               </div>
-              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-primary/20 hover-lift card-hover animate-scale-in [animation-delay:500ms]">
-                <Zap className="h-10 w-10 text-success mb-3 mx-auto animate-float [animation-delay:400ms]" />
-                <h3 className="font-semibold mb-2">DeFi Ready</h3>
-                <p className="text-sm text-muted-foreground">
+              <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-success/20 hover-lift card-hover slide-up-fade stagger-4 gradient-border group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <Zap className="h-10 w-10 text-success mb-3 mx-auto animate-float [animation-delay:400ms] relative z-10" />
+                <h3 className="font-semibold mb-2 relative z-10">DeFi Ready</h3>
+                <p className="text-sm text-muted-foreground relative z-10">
                   Deploy MUSD across DeFi to earn yield and cover costs
                 </p>
               </div>
@@ -148,10 +155,10 @@ const Index = () => {
       )}
 
       {/* How It Works Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16 relative">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+          <div className="text-center space-y-4 mb-12 slide-up-fade">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text animate-shimmer bg-[length:200%_auto]">
               ⚙️ How It Works
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -161,12 +168,13 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   1
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float">
                   <Wallet className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -179,12 +187,13 @@ const Index = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   2
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:200ms]">
                   <DollarSign className="h-6 w-6 text-accent" />
                 </div>
                 <div>
@@ -197,12 +206,13 @@ const Index = () => {
             </div>
 
             {/* Step 3 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-success/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   3
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:400ms]">
                   <ArrowLeftRight className="h-6 w-6 text-success" />
                 </div>
                 <div>
@@ -215,12 +225,13 @@ const Index = () => {
             </div>
 
             {/* Step 4 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   4
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:600ms]">
                   <Activity className="h-6 w-6 text-primary" />
                 </div>
                 <div>
@@ -238,8 +249,8 @@ const Index = () => {
       {/* Use Cases Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+          <div className="text-center space-y-4 mb-12 slide-up-fade">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text animate-shimmer bg-[length:200%_auto]">
               💡 Use Cases
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -249,10 +260,11 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Use Case 1 */}
-            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="space-y-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
-                  <TrendingUp className="h-7 w-7 text-primary" />
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
+                  <TrendingUp className="h-7 w-7 text-primary animate-float" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-xl mb-3">💸 DeFi & Yield Strategies</h3>
@@ -264,10 +276,11 @@ const Index = () => {
             </div>
 
             {/* Use Case 2 */}
-            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="space-y-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
-                  <Bot className="h-7 w-7 text-accent" />
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
+                  <Bot className="h-7 w-7 text-accent animate-float [animation-delay:200ms]" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-xl mb-3">🤖 Trading & Arbitrage</h3>
@@ -279,10 +292,11 @@ const Index = () => {
             </div>
 
             {/* Use Case 3 */}
-            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group">
-              <div className="space-y-4">
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow">
-                  <RefreshCw className="h-7 w-7 text-success" />
+            <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
+                  <RefreshCw className="h-7 w-7 text-success animate-float [animation-delay:400ms]" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-xl mb-3">🔄 Swaps & Portfolio Management</h3>
