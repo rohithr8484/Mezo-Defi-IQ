@@ -104,28 +104,35 @@ export function ArbitrageMonitor() {
 
   return (
     <div className="space-y-6 animate-fade-in-up">
-      <Card className="p-6 card-hover hover-glow">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <Activity className="h-6 w-6 text-primary animate-pulse" />
-            <h2 className="text-2xl font-bold gradient-text animate-shimmer">
-              Arbitrage Monitor
-            </h2>
+      <Card className="p-6 card-hover hover-lift">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Activity className="h-6 w-6 text-primary animate-pulse" />
+              <h2 className="text-2xl font-bold gradient-text">
+                Arbitrage Monitor
+              </h2>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Real-time cross-protocol arbitrage opportunities
+            </p>
           </div>
           <Button
             onClick={runScan}
             disabled={isScanning}
-            className="hover-lift"
+            variant="hero"
+            size="lg"
+            className="w-full sm:w-auto btn-premium"
           >
             {isScanning ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 Scanning...
               </>
             ) : (
               <>
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Scan Now
+                <TrendingUp className="mr-2 h-5 w-5" />
+                Scan & Find Arbitrage
               </>
             )}
           </Button>
@@ -144,10 +151,10 @@ export function ArbitrageMonitor() {
                 key={opp.id}
                 className={`p-4 hover-lift card-hover animate-slide-in-right border-l-4 ${
                   opp.net_profit_usd > 50
-                    ? 'border-l-green-500'
+                    ? 'border-l-success bg-gradient-to-br from-success/10 to-success/5 shadow-[0_0_20px_hsl(var(--success)/0.2)]'
                     : opp.net_profit_usd > 20
-                    ? 'border-l-yellow-500'
-                    : 'border-l-blue-500'
+                    ? 'border-l-accent bg-gradient-to-br from-accent/10 to-accent/5 shadow-[0_0_20px_hsl(var(--accent)/0.2)]'
+                    : 'border-l-primary bg-gradient-to-br from-primary/10 to-primary/5'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >

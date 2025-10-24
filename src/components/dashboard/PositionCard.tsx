@@ -29,12 +29,14 @@ export const PositionCard = ({
     return 'text-destructive';
   };
 
+  const minimumCollateralRequired = borrowed > 0 ? (borrowed / btcPrice) * 1.5 : 0;
+
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-[var(--shadow-card)]">
+    <Card className="p-6 bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-[var(--shadow-card)] hover-lift">
       <div className="space-y-6">
         <div>
-          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Your Position
+          <h2 className="text-2xl font-bold mb-4 gradient-text">
+            Collateral MUSD
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -61,12 +63,22 @@ export const PositionCard = ({
             </div>
           </div>
 
-          {collateral > 0 && (
-            <div className="p-4 rounded-lg bg-muted/50 border border-border mb-4">
-              <p className="text-sm text-muted-foreground mb-1">Available to withdraw</p>
-              <p className="text-lg font-semibold">{availableToWithdraw.toFixed(4)} BTC</p>
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {collateral > 0 && (
+              <div className="p-4 rounded-lg bg-muted/50 border border-primary/30">
+                <p className="text-sm text-muted-foreground mb-1">Available to withdraw</p>
+                <p className="text-lg font-semibold text-success">{availableToWithdraw.toFixed(4)} BTC</p>
+              </div>
+            )}
+            
+            {borrowed > 0 && (
+              <div className="p-4 rounded-lg bg-muted/50 border border-accent/30">
+                <p className="text-sm text-muted-foreground mb-1">Min. Collateral Required</p>
+                <p className="text-lg font-semibold text-accent">{minimumCollateralRequired.toFixed(4)} BTC</p>
+                <p className="text-xs text-muted-foreground mt-1">${(minimumCollateralRequired * btcPrice).toLocaleString()}</p>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-3">

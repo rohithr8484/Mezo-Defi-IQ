@@ -12,6 +12,7 @@ import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
 import { Bitcoin, TrendingUp, Shield, Zap } from 'lucide-react';
+import mezoLogo from '@/assets/mezo-logo.png';
 
 const Index = () => {
   const { isConnected } = useAccount();
@@ -85,8 +86,8 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 animate-slide-in-left">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-glow)] animate-glow">
-                <Bitcoin className="h-6 w-6 text-primary-foreground animate-pulse" />
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary via-accent to-primary-glow flex items-center justify-center shadow-[var(--shadow-glow)] hover-glow p-1">
+                <img src={mezoLogo} alt="Mezo DeFi" className="h-full w-full object-contain" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold gradient-text">

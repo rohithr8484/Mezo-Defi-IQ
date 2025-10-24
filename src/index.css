@@ -17,9 +17,9 @@ All colors MUST be HSL.
     --popover: 224 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 25 95% 53%;
+    --primary: 25 95% 55%;
     --primary-foreground: 0 0% 0%;
-    --primary-glow: 38 100% 70%;
+    --primary-glow: 35 100% 65%;
 
     --secondary: 217 33% 17%;
     --secondary-foreground: 0 0% 100%;
@@ -27,31 +27,35 @@ All colors MUST be HSL.
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 43 100% 50%;
+    --accent: 280 90% 65%;
+    --accent-glow: 290 95% 75%;
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --success: 142 76% 36%;
+    --success: 142 76% 45%;
     --success-foreground: 0 0% 98%;
 
     --border: 217 33% 20%;
     --input: 217 33% 20%;
-    --ring: 25 95% 53%;
+    --ring: 25 95% 55%;
 
     --radius: 0.75rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%), hsl(38 100% 70%));
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 55%), hsl(35 100% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(280 90% 65%), hsl(290 95% 75%));
+    --gradient-premium: linear-gradient(135deg, hsl(25 95% 55%) 0%, hsl(280 90% 65%) 50%, hsl(35 100% 65%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(224 40% 14%), hsl(224 40% 12%));
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(224 40% 16%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(240 10% 8%) 50%, hsl(280 20% 10%) 100%);
     
-    --shadow-glow: 0 0 40px hsl(25 95% 53% / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 60px hsl(25 95% 55% / 0.4), 0 0 100px hsl(280 90% 65% / 0.2);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5), 0 0 80px hsl(25 95% 55% / 0.1);
+    --shadow-premium: 0 20px 60px hsl(25 95% 55% / 0.3), 0 0 120px hsl(280 90% 65% / 0.2);
     --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.5);
     
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
@@ -64,7 +68,7 @@ All colors MUST be HSL.
     --popover: 224 40% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 25 95% 53%;
+    --primary: 25 95% 55%;
     --primary-foreground: 0 0% 0%;
 
     --secondary: 217 33% 17%;
@@ -73,7 +77,7 @@ All colors MUST be HSL.
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 43 100% 50%;
+    --accent: 280 90% 65%;
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
@@ -81,7 +85,7 @@ All colors MUST be HSL.
 
     --border: 217 33% 20%;
     --input: 217 33% 20%;
-    --ring: 25 95% 53%;
+    --ring: 25 95% 55%;
   }
 }
 
@@ -97,18 +101,49 @@ All colors MUST be HSL.
 
 @layer utilities {
   .hover-lift {
-    @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-lg;
+    transition: var(--transition-bounce);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-premium);
   }
   
   .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)];
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+    transform: scale(1.05);
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    background: var(--gradient-premium);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_30px_hsl(var(--primary)/0.2)];
+    transition: var(--transition-smooth);
+  }
+  
+  .card-hover:hover {
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-2px);
+  }
+  
+  .btn-premium {
+    background: var(--gradient-premium);
+    box-shadow: var(--shadow-glow);
+    transition: var(--transition-bounce);
+  }
+  
+  .btn-premium:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-premium);
   }
 }
