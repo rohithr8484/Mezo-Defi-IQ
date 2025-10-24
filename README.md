@@ -1,4 +1,4 @@
-# ⚙️ Institutional-Grade Bitcoin DeFi System
+# ⚙️ Mezo Defi - Institutional-Grade Bitcoin DeFi System
 
 This project represents a **sophisticated cross-protocol DeFi platform** designed to **unlock Bitcoin’s full financial potential** through **composable**, **automated**, and **institutionally robust strategies**.
 
