@@ -10,8 +10,19 @@ import { parseUnits, formatUnits } from 'viem';
 import { toast } from 'sonner';
 import { useTokenApproval } from '@/hooks/useTokenApproval';
 import { useSwapQuote } from '@/hooks/useSwapQuote';
+import musdLogo from '@/assets/tokens/musd-logo.png';
+import btcLogo from '@/assets/tokens/btc-logo.png';
+import musdcLogo from '@/assets/tokens/musdc-logo.png';
+import musdtLogo from '@/assets/tokens/musdt-logo.png';
 
 const AVAILABLE_TOKENS: TokenSymbol[] = ['BTC', 'MUSD', 'mUSDC', 'mUSDT'];
+
+const TOKEN_LOGOS: Record<TokenSymbol, string> = {
+  BTC: btcLogo,
+  MUSD: musdLogo,
+  mUSDC: musdcLogo,
+  mUSDT: musdtLogo,
+};
 
 export const SwapCard = () => {
   const { address, chain } = useAccount();
@@ -185,13 +196,21 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
               }}
               disabled={isApproving || isSwapping || isSwapConfirming}
             >
-              <SelectTrigger className="w-32">
-                <SelectValue />
+              <SelectTrigger className="w-36">
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    <img src={TOKEN_LOGOS[fromToken]} alt={fromToken} className="h-5 w-5 rounded-full" />
+                    <span>{fromToken}</span>
+                  </div>
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {AVAILABLE_TOKENS.filter(t => t !== toToken).map((token) => (
                   <SelectItem key={token} value={token}>
-                    {token}
+                    <div className="flex items-center gap-2">
+                      <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
+                      <span>{token}</span>
+                    </div>
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -231,13 +250,21 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
               }}
               disabled={isApproving || isSwapping || isSwapConfirming}
             >
-              <SelectTrigger className="w-32">
-                <SelectValue />
+              <SelectTrigger className="w-36">
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    <img src={TOKEN_LOGOS[toToken]} alt={toToken} className="h-5 w-5 rounded-full" />
+                    <span>{toToken}</span>
+                  </div>
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {AVAILABLE_TOKENS.filter(t => t !== fromToken).map((token) => (
                   <SelectItem key={token} value={token}>
-                    {token}
+                    <div className="flex items-center gap-2">
+                      <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
+                      <span>{token}</span>
+                    </div>
                   </SelectItem>
                 ))}
               </SelectContent>
