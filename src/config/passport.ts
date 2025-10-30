@@ -1,3 +1,4 @@
+// Trading & Arbitrage
 // Mezo Passport Configuration
 // Note: Mezo Passport integration is available through the wallet connection
 // For advanced passport features, see: https://docs.mezo.org/passport

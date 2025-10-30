@@ -1,3 +1,4 @@
+// Trading & Arbitrage
 import { getDefaultConfig, Chain } from '@rainbow-me/rainbowkit';
 
 // Mezo mainnet configuration
