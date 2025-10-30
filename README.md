@@ -125,13 +125,9 @@ Provides real-time price feeds for crypto assets to power smart contracts and au
 
 ---
 
-### 📦 Packages
-
-```bash
-npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-client@1.9.0
-
-
 ## 📚 Libraries Overview
+
+npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-client@1.9.0
 
 ### **Pyth Network**
 | Package | Version | Purpose |
@@ -172,6 +168,7 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
 ## 🪪 Mezo Passport Integration
 
 ### **Package**
+ npm install @mezo-org/passport @rainbow-me/rainbowkit wagmi viem@2.x @tanstack/react-query
 `@mezo-org/passport` v0.11.0
 
 ### **Type**
@@ -186,33 +183,16 @@ Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet co
 
 ---
 
-## ⚙️ Installation
+## 🔧 Development
 
-```bash
-npm install @mezo-org/passport @rainbow-me/rainbowkit wagmi viem@2.x @tanstack/react-query
-
-
-## 🚀 Quick Start
-
-### Installation
+### Available Scripts
 
 ```bash
 # Clone the repository
 git clone https://github.com/rohithr8484/mezo-btc-yield-hub.git
-cd mezo-btc-yield-hub
+cd mezo-Defi-IQ
 
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
 ```
-
-Open your browser at `http://localhost:5173`
-
-## 🔧 Development
-
-### Available Scripts
 
 ```bash
 # Development server
@@ -229,6 +209,8 @@ npm run preview
 
 # Linting
 npm run lint
+
+Open your browser at `http://localhost:5173`
 ```
 
 ## 🤝 Contributing
