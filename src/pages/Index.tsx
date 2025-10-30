@@ -1,3 +1,4 @@
+// Trading & Arbitrage
 import { useState, useEffect } from 'react';
 import { ConnectButton } from '@/components/wallet/ConnectButton';
 import { PositionCard } from '@/components/dashboard/PositionCard';
@@ -194,7 +195,7 @@ const Index = () => {
               ⚙️ How It Works
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get started with Mezo DeFi - Simple financial services without the complexity
+              Get started with Mezo DeFi
             </p>
           </div>
 

@@ -1,3 +1,4 @@
+// Trading & Arbitrage
 import { Card } from '@/components/ui/card';
 import { TrendingUp, Percent, DollarSign, Shield, Activity } from 'lucide-react';
 
