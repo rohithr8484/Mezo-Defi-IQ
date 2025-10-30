@@ -171,8 +171,6 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
  npm install @mezo-org/passport @rainbow-me/rainbowkit wagmi viem@2.x @tanstack/react-query
 `@mezo-org/passport` v0.11.0
 
-### **Type**
-WebAuthn-based decentralized authentication system.
 
 ### **Integration**
 Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet connector for seamless onboarding and wallet-free authentication.
