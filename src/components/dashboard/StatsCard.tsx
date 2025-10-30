@@ -1,13 +1,14 @@
 import { Card } from '@/components/ui/card';
-import { TrendingUp, Percent, DollarSign, Shield } from 'lucide-react';
+import { TrendingUp, Percent, DollarSign, Shield, Activity } from 'lucide-react';
 
 interface StatsCardProps {
   btcPrice: number;
   totalCollateral: number;
   totalBorrowed: number;
+  blockHeight: number;
 }
 
-export const StatsCard = ({ btcPrice, totalCollateral, totalBorrowed }: StatsCardProps) => {
+export const StatsCard = ({ btcPrice, totalCollateral, totalBorrowed, blockHeight }: StatsCardProps) => {
   const stats = [
     {
       label: 'BTC Price',
@@ -33,10 +34,16 @@ export const StatsCard = ({ btcPrice, totalCollateral, totalBorrowed }: StatsCar
       icon: Shield,
       color: 'text-foreground',
     },
+    {
+      label: 'Block Height',
+      value: blockHeight > 0 ? blockHeight.toLocaleString() : 'Loading...',
+      icon: Activity,
+      color: 'text-secondary',
+    },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
       {stats.map((stat, index) => (
         <Card
           key={index}

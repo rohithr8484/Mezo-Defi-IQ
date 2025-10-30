@@ -18,6 +18,7 @@ const Index = () => {
   const { isConnected } = useAccount();
   const [btcPrice, setBtcPrice] = useState(98000);
   const [priceData, setPriceData] = useState<{ price: number; timestamp: number; conf: number } | null>(null);
+  const [blockHeight, setBlockHeight] = useState(0);
   const [collateral, setCollateral] = useState(0);
   const [borrowed, setBorrowed] = useState(0);
   const [addCollateralOpen, setAddCollateralOpen] = useState(false);
@@ -38,6 +39,37 @@ const Index = () => {
 
     fetchPrice();
     const interval = setInterval(fetchPrice, 10000); // Update every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const fetchBlockHeight = async () => {
+      try {
+        const response = await fetch('https://mainnet.mezo.validationcloud.io/v1/p_xemd5HnZI0yCNZwH_bjpShkEgurvMTlN9xPATAId0', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'eth_blockNumber',
+            params: [],
+          }),
+        });
+
+        const data = await response.json();
+        if (data.result) {
+          setBlockHeight(parseInt(data.result, 16));
+        }
+      } catch (error) {
+        console.error('Error fetching block height:', error);
+      }
+    };
+
+    fetchBlockHeight();
+    const interval = setInterval(fetchBlockHeight, 15000); // Update every 15 seconds
 
     return () => clearInterval(interval);
   }, []);
@@ -330,6 +362,7 @@ const Index = () => {
                 btcPrice={btcPrice}
                 totalCollateral={collateral}
                 totalBorrowed={borrowed}
+                blockHeight={blockHeight}
               />
             </div>
 
