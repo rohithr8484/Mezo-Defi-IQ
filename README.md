@@ -103,7 +103,7 @@ Our platform leverages the security and efficiency of:
 
 <img width="407" height="372" alt="image" src="https://github.com/user-attachments/assets/a3ff980e-d0bc-4069-a0ac-c1b3b7f0f77f" />
 
-# ⚡ Mezo Mainnet Configuration & Contracts
+# ⚡ Mezo Testnet and Mainnet Configuration & Contracts
 
 This repository documents the key smart contracts, network parameters, and package dependencies for the **Mezo Mainnet**, including integrations with **Pyth Network**, **Tigris DEX**, and **Mezo Passport** authentication.
 
