@@ -72,7 +72,13 @@ It unifies **real-time market intelligence**, **capital-efficient lending**, and
 - **Lucide Icons** – Beautiful iconography  
 - **Sonner** – Toast notifications  
 - **Recharts** – Data visualization  
-- **Embla Carousel** – Smooth carousels  
+- **Embla Carousel** – Smooth carousels
+
+
+## 🛠 Technical architecture
+
+<img width="368" height="390" alt="image" src="https://github.com/user-attachments/assets/98fac351-7058-4a46-98ab-5b0bd15ab5fc" />
+
 
 
 ---
