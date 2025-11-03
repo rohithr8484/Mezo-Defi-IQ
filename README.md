@@ -193,8 +193,8 @@ Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet co
 
 ```bash
 # Clone the repository
-git clone https://github.com/rohithr8484/mezo-btc-yield-hub.git
-cd mezo-Defi-IQ
+git clone https://github.com/rohithr8484/mezo-defi-iq.git
+cd Mezo-Defi-IQ
 
 ```
 
