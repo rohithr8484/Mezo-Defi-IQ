@@ -396,7 +396,6 @@ const Index = () => {
 
       {/* FAQ Section */}
       <FAQSection />
-      )}
 
       {/* Modals */}
       <AddCollateralModal
