@@ -4,13 +4,14 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowDownUp, Settings, Loader2, CheckCircle2 } from 'lucide-react';
+import { ArrowDownUp, Settings, Loader2, CheckCircle2, Zap, Info, RefreshCw } from 'lucide-react';
 import { TIGRIS_CONTRACTS, ROUTER_ABI, TOKENS, TOKEN_DECIMALS, type TokenSymbol } from '@/lib/tigris';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseUnits, formatUnits } from 'viem';
 import { toast } from 'sonner';
 import { useTokenApproval } from '@/hooks/useTokenApproval';
 import { useSwapQuote } from '@/hooks/useSwapQuote';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import musdLogo from '@/assets/tokens/musd-logo.png';
 import btcLogo from '@/assets/tokens/btc-logo.png';
 import musdcLogo from '@/assets/tokens/musdc-logo.png';
@@ -32,6 +33,7 @@ export const SwapCard = () => {
   const [fromAmount, setFromAmount] = useState('');
   const [slippage, setSlippage] = useState('0.5');
   const [swapStep, setSwapStep] = useState<'input' | 'approve' | 'swap'>('input');
+  const [showSettings, setShowSettings] = useState(false);
 
   const { writeContract: swap, data: swapHash, isPending: isSwapping } = useWriteContract();
   
@@ -39,15 +41,13 @@ export const SwapCard = () => {
     hash: swapHash,
   });
 
-  // Get quote for swap
-const { amountOut, isLoading: isQuoteLoading } = useSwapQuote(
+  const { amountOut, isLoading: isQuoteLoading } = useSwapQuote(
     fromToken,
     toToken,
     fromAmount
   );
 
-  // Token approval hook
-const amountInWei = fromAmount && Number(fromAmount) > 0 
+  const amountInWei = fromAmount && Number(fromAmount) > 0 
     ? parseUnits(fromAmount, TOKEN_DECIMALS[fromToken]) 
     : 0n;
 
@@ -99,7 +99,6 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
       return;
     }
 
-    // Step 1: Check if approval is needed
     if (needsApproval && swapStep === 'input') {
       setSwapStep('approve');
       const approved = await approve();
@@ -109,12 +108,10 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
       return;
     }
 
-    // Step 2: Execute swap
     try {
       const amountInBigInt = parseUnits(fromAmount, TOKEN_DECIMALS[fromToken]);
-      const deadline = BigInt(Math.floor(Date.now() / 1000) + 1200); // 20 minutes
+      const deadline = BigInt(Math.floor(Date.now() / 1000) + 1200);
       
-      // Calculate minimum output with slippage
       const slippageMultiplier = BigInt(Math.floor((100 - Number(slippage)) * 100));
       const amountOutMin = amountOut > 0n 
         ? (amountOut * slippageMultiplier) / 10000n
@@ -164,191 +161,257 @@ const amountInWei = fromAmount && Number(fromAmount) > 0
     ? formatUnits(amountOut, TOKEN_DECIMALS[toToken]) 
     : '0';
 
+  const exchangeRate = fromAmount && Number(fromAmount) > 0 && amountOut > 0n
+    ? (Number(formattedAmountOut) / Number(fromAmount)).toFixed(4)
+    : null;
+
   return (
-    <Card className="p-6 bg-gradient-to-br from-card to-card/80 border-primary/20 hover-glow card-hover animate-fade-in [animation-delay:200ms]">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold gradient-text">Swap</h2>
-        <Button variant="ghost" size="sm" className="hover-lift">
-          <Settings className="h-4 w-4" />
-        </Button>
-      </div>
-
-      <div className="space-y-4">
-        {/* From Token */}
-        <div className="space-y-2">
-          <label className="text-sm text-muted-foreground">From</label>
-          <div className="flex gap-2">
-            <Input
-              type="number"
-              placeholder="0.0"
-              value={fromAmount}
-              onChange={(e) => {
-                setFromAmount(e.target.value);
-                setSwapStep('input');
-              }}
-              className="flex-1"
-              disabled={isApproving || isSwapping || isSwapConfirming}
-            />
-            <Select 
-              value={fromToken} 
-              onValueChange={(val) => {
-                setFromToken(val as TokenSymbol);
-                setSwapStep('input');
-              }}
-              disabled={isApproving || isSwapping || isSwapConfirming}
-            >
-              <SelectTrigger className="w-36">
-                <SelectValue>
-                  <div className="flex items-center gap-2">
-                    <img src={TOKEN_LOGOS[fromToken]} alt={fromToken} className="h-5 w-5 rounded-full" />
-                    <span>{fromToken}</span>
-                  </div>
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                {AVAILABLE_TOKENS.filter(t => t !== toToken).map((token) => (
-                  <SelectItem key={token} value={token}>
-                    <div className="flex items-center gap-2">
-                      <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
-                      <span>{token}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Swap Direction Button */}
-        <div className="flex justify-center">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleSwapTokens}
-            className="rounded-full hover-lift hover:rotate-180 transition-all duration-500"
-            disabled={isApproving || isSwapping || isSwapConfirming}
-          >
-            <ArrowDownUp className="h-4 w-4" />
-          </Button>
-        </div>
-
-        {/* To Token */}
-        <div className="space-y-2">
-          <label className="text-sm text-muted-foreground">To (estimated)</label>
-          <div className="flex gap-2">
-            <Input
-              type="text"
-              placeholder="0.0"
-              value={isQuoteLoading ? 'Loading...' : formattedAmountOut}
-              disabled
-              className="flex-1"
-            />
-            <Select 
-              value={toToken} 
-              onValueChange={(val) => {
-                setToToken(val as TokenSymbol);
-                setSwapStep('input');
-              }}
-              disabled={isApproving || isSwapping || isSwapConfirming}
-            >
-              <SelectTrigger className="w-36">
-                <SelectValue>
-                  <div className="flex items-center gap-2">
-                    <img src={TOKEN_LOGOS[toToken]} alt={toToken} className="h-5 w-5 rounded-full" />
-                    <span>{toToken}</span>
-                  </div>
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                {AVAILABLE_TOKENS.filter(t => t !== fromToken).map((token) => (
-                  <SelectItem key={token} value={token}>
-                    <div className="flex items-center gap-2">
-                      <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
-                      <span>{token}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* Slippage Settings */}
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Slippage Tolerance</span>
-          <div className="flex gap-2">
-            {['0.1', '0.5', '1.0'].map((val) => (
-              <Button
-                key={val}
-                variant={slippage === val ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSlippage(val)}
-                className="h-7 px-2 text-xs"
-                disabled={isApproving || isSwapping || isSwapConfirming}
-              >
-                {val}%
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Swap Progress */}
-        {(isApproving || isApproved || isSwapping || isSwapConfirming) && (
-          <div className="p-4 rounded-lg bg-muted/50 space-y-2 animate-slide-in-right">
-            <div className="flex items-center justify-between text-sm">
-              <span>1. Token Approval</span>
-              {isApproved ? (
-                <CheckCircle2 className="h-4 w-4 text-green-500 animate-scale-in" />
-              ) : isApproving ? (
-                <Loader2 className="h-4 w-4 animate-spin text-primary" />
-              ) : (
-                <div className="h-4 w-4" />
-              )}
+    <Card className="p-6 glass-panel border-primary/20 hover-lift animate-fade-in [animation-delay:200ms] overflow-hidden relative">
+      {/* Background decoration */}
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl translate-y-1/2 translate-x-1/2" />
+      
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="p-2 rounded-lg icon-container">
+              <RefreshCw className="h-5 w-5 text-primary" />
             </div>
-            <div className="flex items-center justify-between text-sm">
-              <span>2. Execute Swap</span>
-              {isSwapSuccess ? (
-                <CheckCircle2 className="h-4 w-4 text-green-500 animate-scale-in" />
-              ) : isSwapping || isSwapConfirming ? (
-                <Loader2 className="h-4 w-4 animate-spin text-primary" />
-              ) : (
-                <div className="h-4 w-4" />
-              )}
+            <div>
+              <h2 className="text-2xl font-bold gradient-text-accent">Swap</h2>
+              <p className="text-xs text-muted-foreground">Tigris DEX</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="stat-badge">
+              <Zap className="h-3 w-3 inline mr-1" />
+              Instant
+            </div>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="hover-lift h-8 w-8 p-0"
+              onClick={() => setShowSettings(!showSettings)}
+            >
+              <Settings className={`h-4 w-4 transition-transform ${showSettings ? 'rotate-90' : ''}`} />
+            </Button>
+          </div>
+        </div>
+
+        {/* Settings Panel */}
+        {showSettings && (
+          <div className="mb-6 p-4 rounded-xl bg-muted/30 border border-border animate-fade-in">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium flex items-center gap-2">
+                Slippage Tolerance
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="h-3.5 w-3.5 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Maximum price change you're willing to accept</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </span>
+              <div className="flex gap-1.5">
+                {['0.1', '0.5', '1.0', '3.0'].map((val) => (
+                  <Button
+                    key={val}
+                    variant={slippage === val ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSlippage(val)}
+                    className={`h-8 px-3 text-xs ${slippage === val ? 'shadow-lg' : ''}`}
+                    disabled={isApproving || isSwapping || isSwapConfirming}
+                  >
+                    {val}%
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
-        {/* Pool Info */}
-        <div className="p-4 rounded-lg bg-muted/50 space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Router</span>
-            <span className="font-mono text-xs">
-              {TIGRIS_CONTRACTS.router.slice(0, 6)}...{TIGRIS_CONTRACTS.router.slice(-4)}
-            </span>
+        <div className="space-y-4">
+          {/* From Token */}
+          <div className="space-y-2">
+            <label className="text-sm text-muted-foreground font-medium">You Pay</label>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Input
+                  type="number"
+                  placeholder="0.0"
+                  value={fromAmount}
+                  onChange={(e) => {
+                    setFromAmount(e.target.value);
+                    setSwapStep('input');
+                  }}
+                  className="pr-4 text-lg h-14 input-enhanced"
+                  disabled={isApproving || isSwapping || isSwapConfirming}
+                />
+              </div>
+              <Select 
+                value={fromToken} 
+                onValueChange={(val) => {
+                  setFromToken(val as TokenSymbol);
+                  setSwapStep('input');
+                }}
+                disabled={isApproving || isSwapping || isSwapConfirming}
+              >
+                <SelectTrigger className="w-36 h-14 bg-muted/50 border-border">
+                  <SelectValue>
+                    <div className="flex items-center gap-2">
+                      <img src={TOKEN_LOGOS[fromToken]} alt={fromToken} className="h-6 w-6 rounded-full" />
+                      <span className="font-medium">{fromToken}</span>
+                    </div>
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {AVAILABLE_TOKENS.filter(t => t !== toToken).map((token) => (
+                    <SelectItem key={token} value={token}>
+                      <div className="flex items-center gap-2">
+                        <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
+                        <span>{token}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">DEX</span>
-            <span>Tigris (Aerodrome-style AMM)</span>
+
+          {/* Swap Direction Button */}
+          <div className="flex justify-center -my-1">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSwapTokens}
+              className="rounded-full h-10 w-10 p-0 border-2 border-border bg-card hover:bg-primary/10 hover:border-primary/50 hover:rotate-180 transition-all duration-500 shadow-lg"
+              disabled={isApproving || isSwapping || isSwapConfirming}
+            >
+              <ArrowDownUp className="h-4 w-4" />
+            </Button>
           </div>
-          {amountOut > 0n && (
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Price Impact</span>
-              <span className="text-xs">{'<0.1%'}</span>
+
+          {/* To Token */}
+          <div className="space-y-2">
+            <label className="text-sm text-muted-foreground font-medium">You Receive</label>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Input
+                  type="text"
+                  placeholder="0.0"
+                  value={isQuoteLoading ? '' : formattedAmountOut}
+                  disabled
+                  className="text-lg h-14 bg-muted/30"
+                />
+                {isQuoteLoading && (
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                  </div>
+                )}
+              </div>
+              <Select 
+                value={toToken} 
+                onValueChange={(val) => {
+                  setToToken(val as TokenSymbol);
+                  setSwapStep('input');
+                }}
+                disabled={isApproving || isSwapping || isSwapConfirming}
+              >
+                <SelectTrigger className="w-36 h-14 bg-muted/50 border-border">
+                  <SelectValue>
+                    <div className="flex items-center gap-2">
+                      <img src={TOKEN_LOGOS[toToken]} alt={toToken} className="h-6 w-6 rounded-full" />
+                      <span className="font-medium">{toToken}</span>
+                    </div>
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  {AVAILABLE_TOKENS.filter(t => t !== fromToken).map((token) => (
+                    <SelectItem key={token} value={token}>
+                      <div className="flex items-center gap-2">
+                        <img src={TOKEN_LOGOS[token]} alt={token} className="h-5 w-5 rounded-full" />
+                        <span>{token}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Swap Progress */}
+          {(isApproving || isApproved || isSwapping || isSwapConfirming) && (
+            <div className="p-4 rounded-xl bg-muted/30 border border-border space-y-3 animate-scale-in">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2">
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center ${isApproved ? 'bg-success/20' : 'bg-primary/20'}`}>
+                    {isApproved ? (
+                      <CheckCircle2 className="h-4 w-4 text-success" />
+                    ) : isApproving ? (
+                      <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                    ) : (
+                      <span className="text-xs text-muted-foreground">1</span>
+                    )}
+                  </div>
+                  <span className={isApproved ? 'text-success' : ''}>Token Approval</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2">
+                  <div className={`w-6 h-6 rounded-full flex items-center justify-center ${isSwapSuccess ? 'bg-success/20' : 'bg-muted'}`}>
+                    {isSwapSuccess ? (
+                      <CheckCircle2 className="h-4 w-4 text-success" />
+                    ) : isSwapping || isSwapConfirming ? (
+                      <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                    ) : (
+                      <span className="text-xs text-muted-foreground">2</span>
+                    )}
+                  </div>
+                  <span className={isSwapSuccess ? 'text-success' : ''}>Execute Swap</span>
+                </div>
+              </div>
             </div>
           )}
-        </div>
 
-        <Button
-          onClick={handleSwap}
-          className="w-full hover-lift hover-glow"
-          size="lg"
-          disabled={isButtonDisabled}
-        >
-          {(isApproving || isSwapping || isSwapConfirming) && (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          )}
-          {getButtonText()}
-        </Button>
+          {/* Trade Info */}
+          <div className="p-4 rounded-xl bg-muted/20 border border-border/50 space-y-2.5 text-sm">
+            {exchangeRate && (
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Rate</span>
+                <span className="font-medium">1 {fromToken} = {exchangeRate} {toToken}</span>
+              </div>
+            )}
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Slippage</span>
+              <span className="font-medium">{slippage}%</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">DEX</span>
+              <span className="font-medium text-accent">Tigris</span>
+            </div>
+            {amountOut > 0n && (
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Price Impact</span>
+                <span className="text-success font-medium">{'<0.1%'}</span>
+              </div>
+            )}
+          </div>
+
+          <Button
+            onClick={handleSwap}
+            className="w-full h-12 text-base"
+            variant="hero"
+            size="lg"
+            disabled={isButtonDisabled}
+          >
+            {(isApproving || isSwapping || isSwapConfirming) && (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            )}
+            {getButtonText()}
+          </Button>
+        </div>
       </div>
     </Card>
   );
