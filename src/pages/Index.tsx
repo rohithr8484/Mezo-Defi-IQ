@@ -9,6 +9,7 @@ import { PythFeedCard } from '@/components/pyth/PythFeedCard';
 import { ArbitrageMonitor } from '@/components/arbitrage/ArbitrageMonitor';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
+import { FAQSection } from '@/components/faq/FAQSection';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
@@ -391,6 +392,10 @@ const Index = () => {
             </div>
           </div>
         </section>
+      )}
+
+      {/* FAQ Section */}
+      <FAQSection />
       )}
 
       {/* Modals */}
