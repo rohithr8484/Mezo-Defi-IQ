@@ -77,7 +77,8 @@ At its core, Mezo DeFi integrates real-time price feeds, advanced analytics, and
 
 ## 🛠 Technical architecture
 
-<img width="368" height="390" alt="image" src="https://github.com/user-attachments/assets/98fac351-7058-4a46-98ab-5b0bd15ab5fc" />
+<img width="1024" height="1536" alt="ChatGPT Image Jan 18, 2026, 05_43_44 PM" src="https://github.com/user-attachments/assets/3bb01a9e-1343-4b49-92f9-123d94a1ee42" />
+
 
 
 ---
