@@ -51,7 +51,7 @@ export const PositionCard = ({
               <h2 className="text-2xl font-bold gradient-text">
                 Your Position
               </h2>
-              <p className="text-xs text-muted-foreground">Collateral MUSD</p>
+              <p className="text-xs text-muted-foreground">Deposit BTC as collateral to borrow MUSD stablecoin at 1% APR</p>
             </div>
           </div>
           {collateralRatio > 0 && collateralRatio < 180 && (
@@ -152,9 +152,8 @@ export const PositionCard = ({
         <div className="flex flex-wrap gap-3">
           <Button
             onClick={onAddCollateral}
-            variant="default"
             size="lg"
-            className="flex-1 min-w-[140px] h-11"
+            className="flex-1 min-w-[140px] h-11 bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-900 hover:from-amber-400 hover:to-yellow-300 shadow-[0_0_20px_hsl(45_100%_50%/0.25)] hover:shadow-[0_0_30px_hsl(45_100%_50%/0.4)] hover:scale-105 active:scale-95 font-semibold"
           >
             <ArrowUpCircle className="mr-2 h-4 w-4" />
             Add Collateral
@@ -165,7 +164,7 @@ export const PositionCard = ({
             variant="outline"
             size="lg"
             disabled={availableToWithdraw <= 0}
-            className="flex-1 min-w-[140px] h-11"
+            className="flex-1 min-w-[140px] h-11 border-slate-600 hover:border-slate-400 hover:bg-slate-800/50"
           >
             <ArrowDownCircle className="mr-2 h-4 w-4" />
             Withdraw
@@ -173,10 +172,9 @@ export const PositionCard = ({
           
           <Button
             onClick={onClose}
-            variant="destructive"
             size="lg"
             disabled={borrowed <= 0}
-            className="flex-1 min-w-[140px] h-11"
+            className="flex-1 min-w-[140px] h-11 bg-gradient-to-r from-rose-900 to-rose-800 text-rose-100 hover:from-rose-800 hover:to-rose-700 border border-rose-700/50 shadow-[0_0_15px_hsl(350_60%_30%/0.3)] hover:shadow-[0_0_25px_hsl(350_60%_40%/0.4)] hover:scale-105 active:scale-95"
           >
             <XCircle className="mr-2 h-4 w-4" />
             Close Position
