@@ -103,7 +103,12 @@ Our platform leverages the security and efficiency of:
 
 <img width="407" height="372" alt="image" src="https://github.com/user-attachments/assets/a3ff980e-d0bc-4069-a0ac-c1b3b7f0f77f" />
 
-# ⚡ Mezo Testnet and Mainnet Configuration & Contracts
+### **Network**
+- **Network:** Mezo Mainnet  
+- **Chain ID:** `31612`
+  
+
+## ⚡ Mezo Testnet and Mainnet Configuration & Contracts
 
 This repository documents the key smart contracts, network parameters, and package dependencies for the **Mezo Mainnet**, including integrations with **Pyth Network**, **Tigris DEX**, and **Mezo Passport** authentication.
 
@@ -171,9 +176,10 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
 
 ---
 
-## 🪪 Mezo Passport Integration
+## 🪪 Wallet Integration (  Mezo Passport and rainbowkit )
 
 ### **Package**
+
 npm install @mezo-org/passport@0.11.0
 
 npm install @rainbow-me/rainbowkit
@@ -184,15 +190,9 @@ npm install viem@^2
 
 npm install @tanstack/react-query
 
-
-
-### **Integration**
 Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet connector for seamless onboarding and wallet-free authentication.
 
-### **Network**
-- **Network:** Mezo Mainnet  
-- **Chain ID:** `31612`
----
+
 
 ## 🔧 Development
 
