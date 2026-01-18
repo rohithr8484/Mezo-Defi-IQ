@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)] hover:scale-105 active:scale-95",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-[0_0_20px_hsl(var(--destructive)/0.3)] hover:scale-105 active:scale-95",
-        outline: "border-2 border-primary/50 bg-transparent text-foreground hover:bg-primary/10 hover:border-primary hover:shadow-[0_0_15px_hsl(var(--primary)/0.2)] hover:scale-105 active:scale-95",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-lg hover:scale-105 active:scale-95",
+        default: "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:from-primary/90 hover:to-primary-glow/90 shadow-[0_0_20px_hsl(var(--primary)/0.25)] hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] hover:scale-105 active:scale-95",
+        destructive: "bg-gradient-to-r from-destructive to-[hsl(360_70%_55%)] text-destructive-foreground hover:from-destructive/90 hover:to-[hsl(360_70%_50%)] hover:shadow-[0_0_20px_hsl(var(--destructive)/0.3)] hover:scale-105 active:scale-95",
+        outline: "border-2 border-accent/50 bg-transparent text-foreground hover:bg-accent/10 hover:border-accent hover:shadow-[0_0_15px_hsl(var(--accent)/0.2)] hover:scale-105 active:scale-95",
+        secondary: "bg-gradient-to-r from-secondary to-[hsl(280_65%_55%)] text-secondary-foreground hover:from-secondary/90 hover:to-[hsl(280_65%_50%)] hover:shadow-lg hover:scale-105 active:scale-95",
         ghost: "hover:bg-accent/10 hover:text-accent-foreground hover:scale-105 active:scale-95",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-gradient-to-r from-primary to-primary-glow text-primary-foreground border-0 shadow-[0_0_30px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.5)] hover:scale-105 active:scale-95 font-semibold transition-all duration-300",
-        premium: "relative overflow-hidden bg-gradient-to-r from-primary via-accent to-primary-glow text-primary-foreground shadow-[var(--shadow-premium)] hover:shadow-[0_0_60px_hsl(var(--primary)/0.6)] hover:scale-110 active:scale-95 font-bold before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700",
+        link: "text-accent underline-offset-4 hover:underline",
+        hero: "bg-gradient-to-r from-accent to-accent-glow text-accent-foreground border-0 shadow-[0_0_30px_hsl(var(--accent)/0.3)] hover:shadow-[0_0_40px_hsl(var(--accent)/0.5)] hover:scale-105 active:scale-95 font-semibold transition-all duration-300",
+        premium: "relative overflow-hidden bg-gradient-to-r from-accent via-primary to-accent-glow text-accent-foreground shadow-[0_8px_32px_hsl(var(--accent)/0.3)] hover:shadow-[0_12px_48px_hsl(var(--accent)/0.5)] hover:scale-105 active:scale-95 font-bold before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700",
       },
       size: {
         default: "h-10 px-4 py-2",
