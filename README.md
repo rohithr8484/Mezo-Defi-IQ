@@ -1,8 +1,8 @@
 # ⚙️ Mezo Defi - Institutional-Grade Bitcoin DeFi System
 
-This project represents a **sophisticated cross-protocol DeFi platform** designed to **unlock Bitcoin’s full financial potential** through **composable**, **automated**, and **institutionally robust strategies**.
+Mezo DeFi is a Bitcoin-native, cross-protocol DeFi ecosystem designed to unlock Bitcoin’s full financial potential through composable, automated, and institution-grade financial primitives. It unifies non-collateralized access to MUSD, flexible MUSD borrowing, and seamless asset swaps into a single cohesive platform, enabling users to rapidly deploy capital for liquidity needs, trading, and advanced DeFi strategies without the friction of traditional collateral requirements.
 
-It unifies **real-time market intelligence**, **capital-efficient lending**, and **cross-protocol arbitrage execution** into one cohesive ecosystem — enabling professional-grade yield generation, liquidity optimization, and portfolio automation on Bitcoin.
+At its core, Mezo DeFi integrates real-time price feeds, advanced analytics, and cross-protocol arbitrage monitoring to deliver professional-grade market intelligence and automated execution. By combining capital-efficient lending with live insights and arbitrage opportunities, Mezo DeFi empowers users to optimize yield, manage risk, and automate portfolio strategies — all while leveraging the security, transparency, and trust guarantees of Bitcoin.
 
 
 ## 🔧 Core Capabilities
@@ -78,7 +78,6 @@ It unifies **real-time market intelligence**, **capital-efficient lending**, and
 ## 🛠 Technical architecture
 
 <img width="368" height="390" alt="image" src="https://github.com/user-attachments/assets/98fac351-7058-4a46-98ab-5b0bd15ab5fc" />
-
 
 
 ---
@@ -174,8 +173,16 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
 ## 🪪 Mezo Passport Integration
 
 ### **Package**
- npm install @mezo-org/passport @rainbow-me/rainbowkit wagmi viem@2.x @tanstack/react-query
-`@mezo-org/passport` v0.11.0
+npm install @mezo-org/passport@0.11.0
+
+npm install @rainbow-me/rainbowkit
+
+npm install wagmi
+
+npm install viem@^2
+
+npm install @tanstack/react-query
+
 
 
 ### **Integration**
@@ -184,7 +191,6 @@ Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet co
 ### **Network**
 - **Network:** Mezo Mainnet  
 - **Chain ID:** `31612`
-
 ---
 
 ## 🔧 Development
