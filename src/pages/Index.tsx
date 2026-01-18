@@ -269,9 +269,9 @@ const Index = () => {
                   <Activity className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Arbitrage Monitor</h3>
+                  <h3 className="font-semibold text-lg mb-2">Analytics, Price Feeds & Arbitrage</h3>
                   <p className="text-sm text-muted-foreground">
-                    Monitor cross-protocol opportunities in real time, helping advanced users identify profitable arbitrage trades automatically.
+                    Access real-time price feeds, analytics dashboards, and cross-protocol arbitrage monitoring for advanced trading strategies.
                   </p>
                 </div>
               </div>
@@ -344,17 +344,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Pyth Feed Display */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto animate-scale-in">
-          <PythFeedCard 
-            price={priceData?.price || btcPrice} 
-            timestamp={priceData?.timestamp}
-            conf={priceData?.conf}
-          />
-        </div>
-      </section>
-
       {/* Dashboard */}
       {isConnected && (
         <section className="container mx-auto px-4 py-8">
@@ -385,17 +374,37 @@ const Index = () => {
             <div className="mt-6">
               <SwapCard />
             </div>
-
-            {/* Arbitrage Monitor */}
-            <div className="mt-6">
-              <ArbitrageMonitor />
-            </div>
           </div>
         </section>
       )}
 
       {/* FAQ Section */}
       <FAQSection />
+
+      {/* Analytics Section - Pyth Feed & Arbitrage Monitor */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center space-y-4 mb-10 slide-up-fade">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text animate-shimmer bg-[length:200%_auto]">
+            📊 Analytics & Price Feeds
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Real-time market data and arbitrage opportunities
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="animate-scale-in">
+            <PythFeedCard 
+              price={priceData?.price || btcPrice} 
+              timestamp={priceData?.timestamp}
+              conf={priceData?.conf}
+            />
+          </div>
+          <div className="animate-scale-in [animation-delay:150ms]">
+            <ArbitrageMonitor />
+          </div>
+        </div>
+      </section>
 
       {/* Modals */}
       <AddCollateralModal
