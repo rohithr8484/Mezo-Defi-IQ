@@ -352,7 +352,7 @@ export const MUSDLoanCard = ({
                   <Button
                     onClick={onAddCollateral}
                     size="lg"
-                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-900 hover:from-amber-400 hover:to-yellow-300 shadow-[0_0_20px_hsl(45_100%_50%/0.25)] hover:scale-105 active:scale-95 font-semibold"
+                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:opacity-90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98] font-semibold transition-all"
                   >
                     <ArrowUpCircle className="mr-2 h-4 w-4" />
                     Add Collateral
@@ -363,7 +363,7 @@ export const MUSDLoanCard = ({
                     variant="outline"
                     size="lg"
                     disabled={availableToWithdraw <= 0}
-                    className="flex-1 min-w-[120px] h-11 border-slate-600 hover:border-slate-400 hover:bg-slate-800/50"
+                    className="flex-1 min-w-[120px] h-11 border-border hover:border-accent/50 hover:bg-accent/10 transition-all"
                   >
                     <ArrowDownCircle className="mr-2 h-4 w-4" />
                     Withdraw
@@ -373,7 +373,7 @@ export const MUSDLoanCard = ({
                     onClick={onClose}
                     size="lg"
                     disabled={borrowed <= 0}
-                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-rose-900 to-rose-800 text-rose-100 hover:from-rose-800 hover:to-rose-700 border border-rose-700/50 hover:scale-105 active:scale-95"
+                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-secondary/80 to-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_15px_hsl(var(--secondary)/0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
                   >
                     <XCircle className="mr-2 h-4 w-4" />
                     Repay & Close
