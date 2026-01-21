@@ -56,11 +56,9 @@ Empowers users to manage exposure, optimize yield, and rebalance strategies usin
 
 ---
 
-## 🧩 Advanced & Upcoming Features
-- **Automated Yield Strategies** – Deploy idle collateral into optimized yield loops for **passive income generation**.  
-- **Liquidation Protection** – AI-driven **auto-collateral adjustments** to mitigate liquidation risk.  
-- **Multi-Position Portfolio Management** – Track, analyze, and rebalance positions across **multiple chains and protocols**.  
-- **Institutional Analytics Dashboard** – Access **profit/loss**, **volatility**, and **Sharpe ratio** metrics for data-driven decisions.  
+## 🧩 Advanced  Features
+- **Liquidity pools and Yield Strategies** – Deploy idle collateral into optimized yield loops for **passive income generation**.  
+- **MUSD Loans** – AI-driven **auto-collateral MUSF loansa** to mitigate liquidation risk.  
 - **Derivatives Expansion** – Upcoming modules for **BTC options**, **perpetuals**, and **structured yield vaults**.
 
 ---
