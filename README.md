@@ -200,6 +200,8 @@ Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet co
 
 ## 🔧 Environment Variables
 
+```bash
+
 VITE_SUPABASE_PROJECT_ID="<YOUR_SUPABASE_PROJECT_ID>"
 
 VITE_SUPABASE_PUBLISHABLE_KEY="<YOUR_SUPABASE_ANON_KEY>"
@@ -212,6 +214,7 @@ VITE_MEZO_BOAR_NETWORK_WS_RPC_URL=""
 
 VITE_MEZO_BLOCK_EXPLORER_URL=""
 
+```
 
 ## 🔧 Development
 
