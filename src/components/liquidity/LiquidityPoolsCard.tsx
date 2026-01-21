@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Droplets, Plus, ArrowDownCircle, Lock, Unlock, TrendingUp, 
-  ExternalLink, Info, Sparkles, Coins
+  ExternalLink, Info, Sparkles, Coins, ArrowRight, Trophy, 
+  Users, Wallet, Gift, Shield
 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import musdLogo from '@/assets/tokens/musd-logo.png';
@@ -498,9 +499,94 @@ export const LiquidityPoolsCard = () => {
           </div>
         )}
 
-        {/* How it works */}
+        {/* How Prize Savings Pool Works */}
+        <div className="p-5 rounded-xl bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 border border-accent/20 space-y-5">
+          <div className="flex items-center gap-2">
+            <Trophy className="h-5 w-5 text-accent" />
+            <h4 className="font-semibold text-lg">How Prize Savings Pool Works</h4>
+          </div>
+          
+          {/* Visual Flow Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Step 1: Deposit */}
+            <div className="relative p-4 rounded-xl bg-background/60 border border-border hover:border-primary/40 transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-primary/20 group-hover:bg-primary/30 transition-colors">
+                  <Wallet className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">Step 1</span>
+              </div>
+              <h5 className="font-semibold mb-1">Deposit MUSD</h5>
+              <p className="text-xs text-muted-foreground">Users deposit MUSD into a shared savings pool. Each unit deposited equals one prize entry.</p>
+              <ArrowRight className="absolute -right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-primary hidden lg:block" />
+            </div>
+
+            {/* Step 2: Pool Earns Yield */}
+            <div className="relative p-4 rounded-xl bg-background/60 border border-border hover:border-accent/40 transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-accent/20 group-hover:bg-accent/30 transition-colors">
+                  <TrendingUp className="h-5 w-5 text-accent" />
+                </div>
+                <span className="text-xs font-bold text-accent bg-accent/10 px-2 py-0.5 rounded-full">Step 2</span>
+              </div>
+              <h5 className="font-semibold mb-1">Pool Earns Yield</h5>
+              <p className="text-xs text-muted-foreground">The pooled funds generate yield over time through DeFi strategies and liquidity provision.</p>
+              <ArrowRight className="absolute -right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-accent hidden lg:block" />
+            </div>
+
+            {/* Step 3: Yield Forms Prize Pool */}
+            <div className="relative p-4 rounded-xl bg-background/60 border border-border hover:border-success/40 transition-colors group">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-success/20 group-hover:bg-success/30 transition-colors">
+                  <Trophy className="h-5 w-5 text-success" />
+                </div>
+                <span className="text-xs font-bold text-success bg-success/10 px-2 py-0.5 rounded-full">Step 3</span>
+              </div>
+              <h5 className="font-semibold mb-1">Yield Forms Prize Pool</h5>
+              <p className="text-xs text-muted-foreground">All yield generated is collected into a prize pool, creating opportunities for participants.</p>
+            </div>
+          </div>
+
+          {/* Bottom Row - Prize Distribution */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Winner Receives Yield */}
+            <div className="p-4 rounded-xl bg-gradient-to-r from-accent/10 to-success/10 border border-accent/30 group hover:border-accent/50 transition-colors">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-accent/30">
+                  <Gift className="h-5 w-5 text-accent" />
+                </div>
+                <span className="text-xs font-bold text-accent bg-accent/20 px-2 py-0.5 rounded-full">Winner</span>
+              </div>
+              <h5 className="font-semibold mb-1">One Participant Wins the Yield</h5>
+              <p className="text-xs text-muted-foreground">Random selection determines the winner who receives the entire yield from the prize pool.</p>
+            </div>
+
+            {/* Original Deposit Safe */}
+            <div className="p-4 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/30 group hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 rounded-lg bg-primary/30">
+                  <Shield className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-xs font-bold text-primary bg-primary/20 px-2 py-0.5 rounded-full">No Loss</span>
+              </div>
+              <h5 className="font-semibold mb-1">Everyone Keeps Original Deposit</h5>
+              <p className="text-xs text-muted-foreground">All participants retain their original MUSD deposit—only the yield is distributed as prizes.</p>
+            </div>
+          </div>
+
+          {/* Summary Banner */}
+          <div className="p-3 rounded-lg bg-success/10 border border-success/20 flex items-center gap-3">
+            <Users className="h-5 w-5 text-success flex-shrink-0" />
+            <p className="text-xs text-muted-foreground">
+              <span className="font-semibold text-success">No-loss savings: </span>
+              Deposit MUSD, earn prize entries, and always keep your original deposit. Only the generated yield is at play!
+            </p>
+          </div>
+        </div>
+
+        {/* Traditional How it works */}
         <div className="p-4 rounded-xl bg-muted/30 border border-border space-y-3">
-          <h4 className="font-semibold">How it works</h4>
+          <h4 className="font-semibold">Liquidity Provision</h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-start gap-2">
               <span className="text-primary font-bold">1.</span>
