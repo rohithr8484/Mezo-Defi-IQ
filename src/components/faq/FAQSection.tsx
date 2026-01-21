@@ -1,7 +1,7 @@
 // Trading & Arbitrage
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
-import { HelpCircle, Coins, ArrowLeftRight, Activity, Shield, Wallet, TrendingUp } from 'lucide-react';
+import { HelpCircle, Coins, ArrowLeftRight, Activity, Shield, Wallet, TrendingUp, Droplets, Lock, Unlock } from 'lucide-react';
 
 const faqs = [
   {
@@ -39,6 +39,24 @@ const faqs = [
     answer: "If your ratio falls below 150%, your position is at risk of liquidation. Add more collateral immediately using the 'Add Collateral' button, or repay some MUSD to restore a healthy ratio. Monitor the liquidation price shown in your position.",
     icon: TrendingUp,
     relatedFeatures: ["Add Collateral", "Position Monitoring"]
+  },
+  {
+    question: "What are Liquidity Pools and how do they work?",
+    answer: "Liquidity Pools allow you to deposit token pairs (like MUSD/BTC) to earn trading fees and rewards. When you add liquidity, you receive LP tokens representing your share of the pool. You can stake these LP tokens to earn additional MATS rewards.",
+    icon: Droplets,
+    relatedFeatures: ["Liquidity Pools", "LP Tokens", "Yield Farming"]
+  },
+  {
+    question: "How do I add liquidity to a pool?",
+    answer: "Navigate to the Liquidity Pools section, select a pool (MUSD/BTC, MUSD/mUSDC, or MUSD/mUSDT), click on it to open the panel, then provide equal value amounts of both tokens. After adding liquidity, you'll receive LP tokens that represent your pool share.",
+    icon: Droplets,
+    relatedFeatures: ["Add Liquidity", "LP Tokens"]
+  },
+  {
+    question: "What is LP staking and how do I earn rewards?",
+    answer: "After adding liquidity, you can stake your LP tokens in the pool's gauge to earn MATS emissions on top of trading fees. Use the 'Stake LP' tab in the pool panel to stake, or 'Unstake LP' to withdraw and return to earning just trading fees.",
+    icon: Lock,
+    relatedFeatures: ["Stake LP", "Unstake LP", "MATS Rewards"]
   },
 ];
 
