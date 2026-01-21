@@ -4,6 +4,7 @@ import { ConnectButton } from '@/components/wallet/ConnectButton';
 import { MUSDLoanCard } from '@/components/dashboard/MUSDLoanCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { SwapCard } from '@/components/dex/SwapCard';
+import { LiquidityPoolsCard } from '@/components/liquidity/LiquidityPoolsCard';
 import { PythFeedCard } from '@/components/pyth/PythFeedCard';
 import { ArbitrageMonitor } from '@/components/arbitrage/ArbitrageMonitor';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
@@ -407,6 +408,11 @@ const Index = () => {
               
               {/* Tigris DEX Swap */}
               <SwapCard />
+            </div>
+
+            {/* Liquidity Pools Section */}
+            <div className="animate-fade-in [animation-delay:400ms]">
+              <LiquidityPoolsCard />
             </div>
           </div>
         </section>

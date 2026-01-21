@@ -119,7 +119,6 @@ export const MUSDLoanCard = ({
             <div className="text-center space-y-2">
               <p className="text-sm text-muted-foreground">Borrow</p>
               <div className="flex items-center justify-center gap-2">
-                <span className="text-4xl font-bold text-foreground">$</span>
                 <Input
                   type="number"
                   value={loanAmount}
@@ -127,6 +126,7 @@ export const MUSDLoanCard = ({
                   className="text-4xl font-bold bg-transparent border-none text-center w-40 p-0 h-auto focus-visible:ring-0"
                   placeholder="10,000"
                 />
+                <span className="text-4xl font-bold text-primary">MUSD</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Adjust your principal amount to change your collateral requirement and loan costs
@@ -255,7 +255,7 @@ export const MUSDLoanCard = ({
               className="w-full h-12 text-base"
             >
               <Coins className="mr-2 h-5 w-5" />
-              Mint ${desiredBorrow.toLocaleString()} MUSD
+              Mint {desiredBorrow.toLocaleString()} MUSD
             </Button>
           </TabsContent>
 
