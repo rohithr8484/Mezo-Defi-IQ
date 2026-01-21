@@ -1,8 +1,7 @@
 // Trading & Arbitrage
 import { useState, useEffect } from 'react';
 import { ConnectButton } from '@/components/wallet/ConnectButton';
-import { PositionCard } from '@/components/dashboard/PositionCard';
-import { BorrowCard } from '@/components/dashboard/BorrowCard';
+import { MUSDLoanCard } from '@/components/dashboard/MUSDLoanCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { SwapCard } from '@/components/dex/SwapCard';
 import { PythFeedCard } from '@/components/pyth/PythFeedCard';
@@ -13,7 +12,7 @@ import { FAQSection } from '@/components/faq/FAQSection';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
-import { Bitcoin, TrendingUp, Shield, Zap, Wallet, DollarSign, ArrowLeftRight, Activity, Bot, RefreshCw } from 'lucide-react';
+import { Bitcoin, TrendingUp, Shield, Zap, Wallet, DollarSign, ArrowLeftRight, Activity, Bot, RefreshCw, CreditCard, CheckCircle, RotateCcw } from 'lucide-react';
 import mezoLogo from '@/assets/mezo-logo.png';
 
 const Index = () => {
@@ -200,7 +199,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Step 1 */}
             <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -209,12 +208,12 @@ const Index = () => {
                   1
                 </div>
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float">
-                  <Wallet className="h-6 w-6 text-primary" />
+                  <Bitcoin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">No Collateral MUSD</h3>
+                  <h3 className="font-semibold text-lg mb-2">Deposit BTC</h3>
                   <p className="text-sm text-muted-foreground">
-                    Instantly access MUSD without requiring collateral, enabling users to engage with the platform quickly and efficiently.
+                    Lock your BTC as collateral to secure your loan position
                   </p>
                 </div>
               </div>
@@ -227,13 +226,13 @@ const Index = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   2
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:200ms]">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:100ms]">
                   <DollarSign className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Borrow MUSD</h3>
+                  <h3 className="font-semibold text-lg mb-2">Choose Loan Amount</h3>
                   <p className="text-sm text-muted-foreground">
-                    Borrow MUSD for liquidity needs, DeFi strategies, or trading purposes with flexible terms and competitive rates.
+                    Select how much MUSD to mint using the LTV slider
                   </p>
                 </div>
               </div>
@@ -246,13 +245,13 @@ const Index = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   3
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:400ms]">
-                  <ArrowLeftRight className="h-6 w-6 text-success" />
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:200ms]">
+                  <CreditCard className="h-6 w-6 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Swap</h3>
+                  <h3 className="font-semibold text-lg mb-2">Mint MUSD</h3>
                   <p className="text-sm text-muted-foreground">
-                    Seamlessly swap between MUSD and other supported assets directly on the platform, making transactions fast and convenient.
+                    Stablecoins are issued directly to your wallet
                   </p>
                 </div>
               </div>
@@ -265,13 +264,51 @@ const Index = () => {
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   4
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:600ms]">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:300ms]">
                   <Activity className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Analytics, Price Feeds & Arbitrage</h3>
+                  <h3 className="font-semibold text-lg mb-2">Loan Active</h3>
                   <p className="text-sm text-muted-foreground">
-                    Access real-time price feeds, analytics dashboards, and cross-protocol arbitrage monitoring for advanced trading strategies.
+                    Monitor your health ratio & BTC price in real-time
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 5 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+                  5
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:400ms]">
+                  <RotateCcw className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Repay Loan</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Repay your MUSD plus any accrued fees
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 6 */}
+            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-success/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+                  6
+                </div>
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:500ms]">
+                  <CheckCircle className="h-6 w-6 text-success" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Withdraw BTC</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Your collateral is unlocked and returned to you
                   </p>
                 </div>
               </div>
@@ -358,20 +395,17 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
-              <PositionCard
+              <MUSDLoanCard
+                btcPrice={btcPrice}
                 collateral={collateral}
                 borrowed={borrowed}
-                btcPrice={btcPrice}
+                onBorrow={handleBorrow}
                 onAddCollateral={() => setAddCollateralOpen(true)}
                 onWithdraw={() => setWithdrawOpen(true)}
                 onClose={handleClosePosition}
               />
-
-              <BorrowCard btcPrice={btcPrice} onBorrow={handleBorrow} />
-            </div>
-
-            {/* Tigris DEX Swap */}
-            <div className="mt-6">
+              
+              {/* Tigris DEX Swap */}
               <SwapCard />
             </div>
           </div>
