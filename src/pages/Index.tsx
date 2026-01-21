@@ -13,7 +13,7 @@ import { FAQSection } from '@/components/faq/FAQSection';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
-import { Bitcoin, TrendingUp, Shield, Zap, Wallet, DollarSign, ArrowLeftRight, Activity, Bot, RefreshCw, CreditCard, CheckCircle, RotateCcw } from 'lucide-react';
+import { Bitcoin, TrendingUp, Shield, Zap, Wallet, DollarSign, ArrowLeftRight, Activity, Bot, RefreshCw, CreditCard, CheckCircle, RotateCcw, Droplets } from 'lucide-react';
 import mezoLogo from '@/assets/mezo-logo.png';
 
 const Index = () => {
@@ -200,116 +200,135 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
             {/* Step 1 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   1
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float">
-                  <Bitcoin className="h-6 w-6 text-primary" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float">
+                  <Bitcoin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Deposit BTC</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Lock your BTC as collateral to secure your loan position
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Deposit BTC</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Lock BTC as collateral
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   2
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:100ms]">
-                  <DollarSign className="h-6 w-6 text-accent" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:100ms]">
+                  <DollarSign className="h-5 w-5 md:h-6 md:w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Choose Loan Amount</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Select how much MUSD to mint using the LTV slider
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Choose Amount</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Set MUSD with LTV
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-success/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   3
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:200ms]">
-                  <CreditCard className="h-6 w-6 text-success" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:200ms]">
+                  <CreditCard className="h-5 w-5 md:h-6 md:w-6 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Mint MUSD</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Stablecoins are issued directly to your wallet
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Mint MUSD</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Receive stablecoins
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Step 4 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   4
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:300ms]">
-                  <Activity className="h-6 w-6 text-primary" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:300ms]">
+                  <Activity className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Loan Active</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Monitor your health ratio & BTC price in real-time
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Loan Active</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Monitor health ratio
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Step 5 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   5
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:400ms]">
-                  <RotateCcw className="h-6 w-6 text-accent" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:400ms]">
+                  <RotateCcw className="h-5 w-5 md:h-6 md:w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Repay Loan</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Repay your MUSD plus any accrued fees
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Repay Loan</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Pay MUSD + fees
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Step 6 */}
-            <div className="p-6 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-4 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-success/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center text-lg md:text-xl font-bold text-primary group-hover:scale-110 transition-transform glow-pulse">
                   6
                 </div>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:500ms]">
-                  <CheckCircle className="h-6 w-6 text-success" />
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:500ms]">
+                  <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Withdraw BTC</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Your collateral is unlocked and returned to you
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Withdraw BTC</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Collateral returned
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 7 - Add Liquidity */}
+            <div className="p-4 md:p-5 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-5 relative overflow-hidden col-span-2 sm:col-span-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex flex-col items-center text-center space-y-3 relative z-10">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary/10 flex items-center justify-center text-lg md:text-xl font-bold text-secondary group-hover:scale-110 transition-transform glow-pulse">
+                  7
+                </div>
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-lg bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow animate-float [animation-delay:600ms]">
+                  <Droplets className="h-5 w-5 md:h-6 md:w-6 text-secondary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm md:text-base mb-1">Add Liquidity</h3>
+                  <p className="text-xs text-muted-foreground hidden sm:block">
+                    Earn LP rewards
                   </p>
                 </div>
               </div>
@@ -396,6 +415,9 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
+              {/* Tigris DEX Swap - Now First */}
+              <SwapCard />
+              
               <MUSDLoanCard
                 btcPrice={btcPrice}
                 collateral={collateral}
@@ -405,9 +427,6 @@ const Index = () => {
                 onWithdraw={() => setWithdrawOpen(true)}
                 onClose={handleClosePosition}
               />
-              
-              {/* Tigris DEX Swap */}
-              <SwapCard />
             </div>
 
             {/* Liquidity Pools Section */}
