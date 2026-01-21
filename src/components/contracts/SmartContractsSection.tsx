@@ -1,8 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { 
-  Code2, GitBranch, FolderOpen, Folder, FileCode, ExternalLink 
-} from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Code2, GitBranch, FileCode, ExternalLink } from 'lucide-react';
 
 export const SmartContractsSection = () => {
   return (
@@ -25,96 +22,6 @@ export const SmartContractsSection = () => {
           <div className="stat-badge flex items-center gap-1">
             <GitBranch className="h-3 w-3" />
             Solidity
-          </div>
-        </div>
-
-        {/* Contract Structure */}
-        <div className="p-4 rounded-xl bg-background/80 border border-border font-mono text-sm">
-          <div className="flex items-center gap-2 text-accent mb-3">
-            <FolderOpen className="h-4 w-4" />
-            <span className="font-semibold">mezo-defi-contracts/</span>
-          </div>
-          
-          <div className="ml-4 space-y-1.5">
-            <div className="flex items-center gap-2">
-              <Folder className="h-3.5 w-3.5 text-accent/70" />
-              <span className="text-muted-foreground">contracts/</span>
-            </div>
-            <div className="ml-6 space-y-1">
-              <div className="flex items-center gap-2 group cursor-pointer hover:bg-primary/10 rounded px-2 py-1 -mx-2 transition-colors">
-                <FileCode className="h-3.5 w-3.5 text-success" />
-                <span className="text-foreground group-hover:text-primary transition-colors">SavingsVault.sol</span>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <a 
-                        href="https://explorer.mezo.org/address/0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <ExternalLink className="h-3 w-3 text-primary" />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent>View on Explorer</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-              <div className="flex items-center gap-2 group cursor-pointer hover:bg-primary/10 rounded px-2 py-1 -mx-2 transition-colors">
-                <FileCode className="h-3.5 w-3.5 text-success" />
-                <span className="text-foreground group-hover:text-primary transition-colors">Staking.sol</span>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <a 
-                        href="https://explorer.mezo.org/address/0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <ExternalLink className="h-3 w-3 text-primary" />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent>View on Explorer</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Folder className="h-3.5 w-3.5 text-accent/70" />
-              <span className="text-muted-foreground">scripts/</span>
-            </div>
-            <div className="ml-6">
-              <div className="flex items-center gap-2 text-muted-foreground/70">
-                <FileCode className="h-3.5 w-3.5 text-blue-400" />
-                <span>deploy.ts</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <Folder className="h-3.5 w-3.5 text-accent/70" />
-              <span className="text-muted-foreground">test/</span>
-            </div>
-            <div className="ml-6">
-              <div className="flex items-center gap-2 text-muted-foreground/70">
-                <FileCode className="h-3.5 w-3.5 text-blue-400" />
-                <span>SavingsVault.test.ts</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2 text-muted-foreground/70">
-              <FileCode className="h-3.5 w-3.5 text-blue-400" />
-              <span>hardhat.config.ts</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground/70">
-              <FileCode className="h-3.5 w-3.5 text-accent" />
-              <span>package.json</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground/70">
-              <FileCode className="h-3.5 w-3.5 text-muted-foreground" />
-              <span>README.md</span>
-            </div>
           </div>
         </div>
 
