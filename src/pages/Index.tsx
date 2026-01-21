@@ -10,7 +10,7 @@ import { ArbitrageMonitor } from '@/components/arbitrage/ArbitrageMonitor';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
 import { FAQSection } from '@/components/faq/FAQSection';
-import { SmartContractsSection } from '@/components/contracts/SmartContractsSection';
+
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
@@ -402,12 +402,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Smart Contracts Section - Visible to all */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto animate-fade-in">
-          <SmartContractsSection />
-        </div>
-      </section>
 
       {/* Dashboard */}
       {isConnected && (
