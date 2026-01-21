@@ -180,6 +180,8 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
 
 ### **Package**
 
+```bash
+
 npm install @mezo-org/passport@0.11.0
 
 npm install @rainbow-me/rainbowkit
@@ -190,8 +192,25 @@ npm install viem@^2
 
 npm install @tanstack/react-query
 
+```
+
 Integrated via [`@rainbow-me/rainbowkit`](https://www.rainbowkit.com/) wallet connector for seamless onboarding and wallet-free authentication.
 
+
+
+## 🔧 Environment Variables
+
+VITE_SUPABASE_PROJECT_ID="<YOUR_SUPABASE_PROJECT_ID>"
+
+VITE_SUPABASE_PUBLISHABLE_KEY="<YOUR_SUPABASE_ANON_KEY>"
+
+VITE_SUPABASE_URL="<YOUR_SUPABASE_URL>"
+
+VITE_MEZO_HTTP_RPC_URL="<YOUR_MEZO_HTTP_RPC_URL>"
+
+VITE_MEZO_WS_RPC_URL="<YOUR_MEZO_WS_RPC_URL>"
+
+VITE_MEZO_BLOCK_EXPLORER_URL="<YOUR_MEZO_BLOCK_EXPLORER_URL>"
 
 
 ## 🔧 Development
