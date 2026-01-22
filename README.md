@@ -8,13 +8,13 @@ At its core, Mezo DeFi integrates real-time price feeds, advanced analytics, and
 A cross-protocol DeFi app built on a Bitcoin-powered blockchain to unlock Bitcoin’s full financial potential.
 
 - Unified capital deployment platform
-Brings together non-collateralized access to MUSD, flexible MUSD borrowing, seamless asset swaps, and Bitcoin loan liquidity into a single cohesive platform.
+Brings together non-collateralized access to MUSD, flexible MUSD borrowing, seamless asset swaps, and  liquidity into a single cohesive platform.
 
 - Capital-efficient access to MUSD
 Enables users to access and deploy MUSD quickly for liquidity needs, trading, and advanced DeFi strategies—without traditional collateral friction.
 
 - Deposited MUSD
-Users can deposit MUSD to provide liquidity for Bitcoin loans, earning yield while supporting BTC-native lending markets.
+Users can deposit MUSD for MUSD loans, earning yield while supporting BTC-native lending markets.
 
 - Composable DeFi primitives
 Modular design allows users to stack lending, borrowing, swaps, and liquidity provisioning across protocols.
