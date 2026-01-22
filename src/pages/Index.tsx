@@ -439,9 +439,6 @@ const Index = () => {
         </section>
       )}
 
-      {/* FAQ Section */}
-      <FAQSection />
-
       {/* Analytics Section - Pyth Feed & Arbitrage Monitor */}
       <section className="container mx-auto px-4 py-12">
         <div className="text-center space-y-4 mb-10 slide-up-fade">
@@ -466,6 +463,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* Modals */}
       <AddCollateralModal
