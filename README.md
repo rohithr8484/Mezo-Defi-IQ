@@ -22,6 +22,11 @@ Modular design allows users to stack lending, borrowing, swaps, and liquidity pr
 - Risk-aware portfolio optimization
 Empowers users to manage exposure, optimize yield, and rebalance strategies using real-time insights.
 
+<img width="917" height="400" alt="mezo_defi_logo_header" src="https://github.com/user-attachments/assets/ec0977de-25f6-4a00-b857-62513b46e90f" />
+
+
+
+
 ## 🔧 Core Capabilities
 
 ### ⚡ Cross-Protocol Arbitrage Engine
