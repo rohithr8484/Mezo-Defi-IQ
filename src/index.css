@@ -50,6 +50,12 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
+    /* Alternating section backgrounds */
+    --section-light: 0 0% 100%;
+    --section-alt: 210 25% 96%;
+    --navbar: 220 25% 18%;
+    --navbar-foreground: 0 0% 98%;
+
     --gradient-primary: linear-gradient(135deg, hsl(45 93% 47%), hsl(48 100% 55%));
     --gradient-accent: linear-gradient(135deg, hsl(160 84% 35%), hsl(165 90% 45%));
     --gradient-secondary: linear-gradient(135deg, hsl(200 80% 45%), hsl(210 85% 50%));
