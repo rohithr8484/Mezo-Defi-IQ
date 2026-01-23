@@ -62,7 +62,8 @@ const faqs = [
 
 export const FAQSection = () => {
   return (
-    <section className="container mx-auto px-4 py-16">
+    <section className="bg-[hsl(var(--section-alt))] py-16">
+      <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center space-y-4 mb-12 slide-up-fade">
           <div className="flex items-center justify-center gap-3">
@@ -120,6 +121,7 @@ export const FAQSection = () => {
             })}
           </Accordion>
         </Card>
+      </div>
       </div>
     </section>
   );
