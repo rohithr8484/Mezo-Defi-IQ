@@ -459,7 +459,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="flex flex-col gap-8 max-w-3xl mx-auto">
             <div className="animate-scale-in">
               <PythFeedCard 
                 price={priceData?.price || btcPrice} 
