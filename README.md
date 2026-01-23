@@ -23,7 +23,7 @@ Modular design allows users to stack lending, borrowing, swaps, and liquidity pr
 Empowers users to manage exposure, optimize yield, and rebalance strategies using real-time insights.
 
 <img width="920" height="600" alt="mezo_defi_logo_header" src="https://github.com/user-attachments/assets/ec0977de-25f6-4a00-b857-62513b46e90f" />
-
+<p align="left"> <img src="https://img.shields.io/badge/Mezo-pink?style=flat-square" /> <img src="https://img.shields.io/badge/Challenge-yellow?style=flat-square" /> <img src="https://img.shields.io/badge/Liquidity-blue?style=flat-square" /> </p>
 
 ## 🔧 Core Capabilities
 
