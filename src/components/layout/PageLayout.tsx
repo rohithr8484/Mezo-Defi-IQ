@@ -4,7 +4,7 @@ import mezoLogo from '@/assets/mezo-logo.png';
 
 const navLinks = [
   { path: '/', label: 'Home' },
-  { path: '/dashboard', label: 'Dashboard' },
+  { path: '/dashboard', label: 'Swap & Borrow' },
   { path: '/liquidity', label: 'Liquidity' },
   { path: '/analytics', label: 'Analytics' },
 ];
