@@ -44,7 +44,7 @@ Empowers users to manage exposure, optimize yield, and rebalance strategies usin
 
 ---
 
-## 💸 Lending & Collateral Framework
+## 💸 Lending & Collateral Framework For MUSD loans
 - **Borrow MUSD against BTC** at a **1 % fixed interest rate** while maintaining **full custody** of your collateral.  
 - Real-time **collateral ratio tracking** and **risk assessment** ensure continuous portfolio visibility.  
 - Dynamically **add**, **withdraw**, or **rebalance collateral** for adaptive liquidity management.  
