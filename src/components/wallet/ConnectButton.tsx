@@ -62,7 +62,7 @@ export const ConnectButton = () => {
                     onClick={openChainModal}
                     variant="outline"
                     size="sm"
-                    className="hidden sm:flex"
+                    className="hidden sm:flex text-white"
                   >
                     {chain.hasIcon && (
                       <div
@@ -87,7 +87,7 @@ export const ConnectButton = () => {
                     {chain.name}
                   </Button>
 
-                  <Button onClick={openAccountModal} variant="outline" size="sm">
+                  <Button onClick={openAccountModal} variant="outline" size="sm" className="text-white">
                     {account.displayName}
                   </Button>
                 </div>
