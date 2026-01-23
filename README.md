@@ -13,7 +13,7 @@ Brings together non-collateralized access to BTC, MUSD, flexible MUSD borrowing,
 - Capital-efficient access to MUSD
 Enables users to access and deploy MUSD quickly for liquidity needs, trading, and advanced DeFi strategies—without traditional collateral friction.
 
-- Deposited MUSD
+- Deposited BTC
 Users can deposit BTC which can be converted to MUSD for bitcoin based loans
 
 - Composable DeFi primitives
