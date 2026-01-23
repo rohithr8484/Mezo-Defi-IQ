@@ -8,13 +8,13 @@ At its core, Mezo DeFi integrates real-time price feeds, advanced analytics, and
 A cross-protocol DeFi app built on a Bitcoin-powered blockchain to unlock Bitcoin’s full financial potential.
 
 - Unified capital deployment platform
-Brings together non-collateralized access to MUSD, flexible MUSD borrowing, seamless asset swaps, and  liquidity into a single cohesive platform.
+Brings together non-collateralized access to BTC, MUSD, flexible MUSD borrowing, seamless asset swaps, and  liquidity into a single cohesive platform.
 
 - Capital-efficient access to MUSD
 Enables users to access and deploy MUSD quickly for liquidity needs, trading, and advanced DeFi strategies—without traditional collateral friction.
 
 - Deposited MUSD
-Users can deposit MUSD for MUSD loans
+Users can deposit BTC which can be converted to MUSD for bitcoin based loans
 
 - Composable DeFi primitives
 Modular design allows users to stack lending, borrowing, swaps, and liquidity provisioning across protocols.
@@ -79,7 +79,8 @@ Empowers users to manage exposure and rebalance strategies using real-time insig
 - **RainbowKit** – Wallet management  
 - **Sats Connect** – Bitcoin transaction handling  
 - **Wagmi + Viem** – Blockchain interaction layer  
-- **MUSD Integration** – Stablecoin operations  
+- **MUSD Integration** – Stablecoin operations
+- **BTC integration** - Stablecoin operations
 
 ### State Management & Forms
 - **React Query** – Server state management  
@@ -96,7 +97,6 @@ Empowers users to manage exposure and rebalance strategies using real-time insig
 ## 🛠 Technical architecture
 
 <img width="1024" height="1536" alt="ChatGPT Image Jan 18, 2026, 05_43_44 PM" src="https://github.com/user-attachments/assets/3bb01a9e-1343-4b49-92f9-123d94a1ee42" />
-
 
 
 ---
