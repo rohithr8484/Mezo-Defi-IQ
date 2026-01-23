@@ -9,6 +9,9 @@ import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import { config } from './config/wagmi';
 import Index from "./pages/Index";
+import Dashboard from "./pages/Dashboard";
+import Liquidity from "./pages/Liquidity";
+import Analytics from "./pages/Analytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -38,6 +41,9 @@ const App = () => {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/liquidity" element={<Liquidity />} />
+                <Route path="/analytics" element={<Analytics />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
