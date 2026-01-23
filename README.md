@@ -185,12 +185,12 @@ npm install @pythnetwork/pyth-evm-js@2.0.0-alpha2 @pythnetwork/price-service-cli
 
 ## 💰 Token Contracts (Mezo Mainnet)
 
-| Token | Address | Description | Decimals |
+| Token | Address | Description ||
 |--------|----------|-------------|-----------|
-| **BTC (tBTC)** | `0x7b7C000000000000000000000000000000000000` | Native Bitcoin representation | 18 |
-| **MUSD** | `0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186` | Mezo USD stablecoin proxy | 18 |
-| **mUSDC** | `0x04671C72Aab5AC02A03c1098314b1BB6B560c197` | Bridged USDC | 6 |
-| **mUSDT** | `0xeB5a5d39dE4Ea42C2Aa6A57EcA2894376683bB8E` | Bridged USDT | 6 |
+| **BTC (tBTC)** | `0x7b7C000000000000000000000000000000000000` | Native Bitcoin representation 
+| **MUSD** | `0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186` | Mezo USD stablecoin proxy 
+| **mUSDC** | `0x04671C72Aab5AC02A03c1098314b1BB6B560c197` | Bridged USDC 
+| **mUSDT** | `0xeB5a5d39dE4Ea42C2Aa6A57EcA2894376683bB8E` | Bridged USDT 
 
 ---
 
