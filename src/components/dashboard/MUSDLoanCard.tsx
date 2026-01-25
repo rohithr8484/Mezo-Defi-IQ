@@ -261,138 +261,136 @@ export const MUSDLoanCard = ({
 
           {/* Position Tab */}
           <TabsContent value="position" className="space-y-6">
-            {hasActivePosition ? (
-              <>
-                {/* Position Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
-                    <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
-                      <Shield className="h-3 w-3" />
-                      Collateral
-                    </div>
-                    <p className="text-xl font-bold text-foreground">{collateral.toFixed(4)}</p>
-                    <p className="text-xs text-muted-foreground">BTC (${collateralValue.toLocaleString(undefined, { maximumFractionDigits: 0 })})</p>
-                  </div>
-                  
-                  <div className="p-4 rounded-xl bg-gradient-to-br from-accent/10 to-transparent border border-accent/20">
-                    <div className="text-xs text-muted-foreground mb-1">Borrowed</div>
-                    <p className="text-xl font-bold text-foreground">{borrowed.toLocaleString()}</p>
-                    <p className="text-xs text-muted-foreground">MUSD @ {apr.toFixed(1)}%</p>
-                  </div>
+            {/* Position Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
+                  <Shield className="h-3 w-3" />
+                  Collateral
                 </div>
+                <p className="text-xl font-bold text-foreground">{collateral.toFixed(4)}</p>
+                <p className="text-xs text-muted-foreground">BTC (${collateralValue.toLocaleString(undefined, { maximumFractionDigits: 0 })})</p>
+              </div>
+              
+              <div className="p-4 rounded-xl bg-gradient-to-br from-accent/10 to-transparent border border-accent/20">
+                <div className="text-xs text-muted-foreground mb-1">Borrowed</div>
+                <p className="text-xl font-bold text-foreground">{borrowed.toLocaleString()}</p>
+                <p className="text-xs text-muted-foreground">MUSD @ {apr.toFixed(1)}%</p>
+              </div>
+            </div>
 
-                {/* Health Indicator */}
-                <div className={`p-4 rounded-xl border ${positionStatus.bg} transition-colors`}>
-                  <div className="flex justify-between items-center mb-3">
-                    <div className="flex items-center gap-2">
-                      <positionStatus.icon className={`h-5 w-5 ${positionStatus.color}`} />
-                      <span className="text-sm font-medium">Health Ratio</span>
-                    </div>
-                    <div className="text-right">
-                      <span className={`text-2xl font-bold ${positionStatus.color}`}>
-                        {collateralRatio.toFixed(0)}%
-                      </span>
-                      <span className={`ml-2 text-xs ${positionStatus.color}`}>
-                        {positionStatus.label}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full transition-all duration-500 rounded-full ${
-                        collateralRatio >= 250 ? 'bg-success' :
-                        collateralRatio >= 200 ? 'bg-accent' :
-                        collateralRatio >= 150 ? 'bg-warning' :
-                        'bg-destructive'
-                      }`}
-                      style={{ width: `${Math.min(100, (collateralRatio / 300) * 100)}%` }}
-                    />
-                  </div>
+            {/* Health Indicator */}
+            <div className={`p-4 rounded-xl border ${hasActivePosition ? positionStatus.bg : 'bg-muted/30 border-border'} transition-colors`}>
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  {hasActivePosition ? (
+                    <positionStatus.icon className={`h-5 w-5 ${positionStatus.color}`} />
+                  ) : (
+                    <Shield className="h-5 w-5 text-muted-foreground" />
+                  )}
+                  <span className="text-sm font-medium">Health Ratio</span>
                 </div>
-
-                {/* Position Details */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-muted/30 border border-border">
-                    <div className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
-                      Available to Withdraw
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Info className="h-3 w-3" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Max BTC you can withdraw while maintaining 150% ratio</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-                    <p className="text-lg font-semibold text-success">{availableToWithdraw.toFixed(4)} BTC</p>
-                  </div>
-                  
-                  <div className="p-4 rounded-xl bg-muted/30 border border-border">
-                    <div className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
-                      Liquidation Price
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <Info className="h-3 w-3" />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>BTC price at which your position would be liquidated</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </div>
-                    <p className="text-lg font-semibold text-destructive">${liquidationPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}</p>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3">
-                  <Button
-                    onClick={onAddCollateral}
-                    size="lg"
-                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:opacity-90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98] font-semibold transition-all"
-                  >
-                    <ArrowUpCircle className="mr-2 h-4 w-4" />
-                    Add Collateral
-                  </Button>
-                  
-                  <Button
-                    onClick={onWithdraw}
-                    variant="outline"
-                    size="lg"
-                    disabled={availableToWithdraw <= 0}
-                    className="flex-1 min-w-[120px] h-11 border-border hover:border-accent/50 hover:bg-accent/10 transition-all"
-                  >
-                    <ArrowDownCircle className="mr-2 h-4 w-4" />
-                    Withdraw
-                  </Button>
-                  
-                  <Button
-                    onClick={onClose}
-                    size="lg"
-                    disabled={borrowed <= 0}
-                    className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-secondary/80 to-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_15px_hsl(var(--secondary)/0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    <XCircle className="mr-2 h-4 w-4" />
-                    Repay & Close
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <div className="text-center py-12 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mx-auto">
-                  <Wallet className="h-8 w-8 text-muted-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">No Active Position</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Create a new loan to get started with MUSD
-                  </p>
+                <div className="text-right">
+                  <span className={`text-2xl font-bold ${hasActivePosition ? positionStatus.color : 'text-muted-foreground'}`}>
+                    {collateralRatio.toFixed(0)}%
+                  </span>
+                  {hasActivePosition && (
+                    <span className={`ml-2 text-xs ${positionStatus.color}`}>
+                      {positionStatus.label}
+                    </span>
+                  )}
+                  {!hasActivePosition && (
+                    <span className="ml-2 text-xs text-muted-foreground">
+                      No Position
+                    </span>
+                  )}
                 </div>
               </div>
-            )}
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div 
+                  className={`h-full transition-all duration-500 rounded-full ${
+                    !hasActivePosition ? 'bg-muted-foreground/30' :
+                    collateralRatio >= 250 ? 'bg-success' :
+                    collateralRatio >= 200 ? 'bg-accent' :
+                    collateralRatio >= 150 ? 'bg-warning' :
+                    'bg-destructive'
+                  }`}
+                  style={{ width: `${Math.min(100, (collateralRatio / 300) * 100)}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Position Details */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-muted/30 border border-border">
+                <div className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
+                  Available to Withdraw
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-3 w-3" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Max BTC you can withdraw while maintaining 150% ratio</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <p className="text-lg font-semibold text-success">{availableToWithdraw.toFixed(4)} BTC</p>
+              </div>
+              
+              <div className="p-4 rounded-xl bg-muted/30 border border-border">
+                <div className="text-xs text-muted-foreground mb-1 flex items-center gap-1">
+                  Liquidation Price
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="h-3 w-3" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>BTC price at which your position would be liquidated</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <p className="text-lg font-semibold text-destructive">
+                  {hasActivePosition ? `$${liquidationPrice.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : '$0'}
+                </p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <Button
+                onClick={onAddCollateral}
+                size="lg"
+                className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:opacity-90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98] font-semibold transition-all"
+              >
+                <ArrowUpCircle className="mr-2 h-4 w-4" />
+                Add Collateral
+              </Button>
+              
+              <Button
+                onClick={onWithdraw}
+                variant="outline"
+                size="lg"
+                disabled={availableToWithdraw <= 0}
+                className="flex-1 min-w-[120px] h-11 border-border hover:border-accent/50 hover:bg-accent/10 transition-all"
+              >
+                <ArrowDownCircle className="mr-2 h-4 w-4" />
+                Withdraw
+              </Button>
+              
+              <Button
+                onClick={onClose}
+                size="lg"
+                disabled={borrowed <= 0}
+                className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-secondary/80 to-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_15px_hsl(var(--secondary)/0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+              >
+                <XCircle className="mr-2 h-4 w-4" />
+                Repay & Close
+              </Button>
+            </div>
           </TabsContent>
         </Tabs>
       </div>
