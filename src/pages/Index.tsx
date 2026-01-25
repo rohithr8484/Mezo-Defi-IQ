@@ -5,6 +5,11 @@ import { FAQSection } from '@/components/faq/FAQSection';
 
 import { Bitcoin, TrendingUp, Shield, Zap, DollarSign, Activity, Bot, RefreshCw, CreditCard, CheckCircle, RotateCcw, Droplets } from 'lucide-react';
 
+// Use case images
+import defiYieldImage from '@/assets/use-cases/defi-yield.png';
+import tradingArbitrageImage from '@/assets/use-cases/trading-arbitrage.png';
+import swapsPortfolioImage from '@/assets/use-cases/swaps-portfolio.png';
+
 const Index = () => {
   const { isConnected } = useAccount();
 
@@ -225,14 +230,18 @@ const Index = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Use Case 1 */}
-              <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
+              <div className="rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-1 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="space-y-4 relative z-10">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
-                    <TrendingUp className="h-7 w-7 text-primary animate-float" />
+                <div className="relative z-10">
+                  <div className="w-full h-40 overflow-hidden rounded-t-xl bg-gradient-to-br from-primary/5 to-accent/5">
+                    <img 
+                      src={defiYieldImage} 
+                      alt="DeFi & Yield Strategies" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-xl mb-3">💸 DeFi & Yield Strategies</h3>
+                  <div className="p-6 space-y-3">
+                    <h3 className="font-semibold text-xl">💸 DeFi & Yield Strategies</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Utilize MUSD for multi-layered yield farming, looping strategies, and liquidity optimization.
                     </p>
@@ -241,14 +250,18 @@ const Index = () => {
               </div>
 
               {/* Use Case 2 */}
-              <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
+              <div className="rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-2 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="space-y-4 relative z-10">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
-                    <Bot className="h-7 w-7 text-accent animate-float [animation-delay:200ms]" />
+                <div className="relative z-10">
+                  <div className="w-full h-40 overflow-hidden rounded-t-xl bg-gradient-to-br from-accent/5 to-primary/5">
+                    <img 
+                      src={tradingArbitrageImage} 
+                      alt="Trading & Arbitrage" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-xl mb-3">🤖 Trading & Arbitrage</h3>
+                  <div className="p-6 space-y-3">
+                    <h3 className="font-semibold text-xl">🤖 Trading & Arbitrage</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Monitor and execute arbitrage opportunities across protocols for capital efficiency.
                     </p>
@@ -257,14 +270,18 @@ const Index = () => {
               </div>
 
               {/* Use Case 3 */}
-              <div className="p-8 rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
+              <div className="rounded-xl bg-card/50 backdrop-blur border border-border hover-lift card-hover group gradient-border slide-up-fade stagger-3 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="space-y-4 relative z-10">
-                  <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:shadow-[var(--shadow-glow)] transition-shadow glow-pulse">
-                    <RefreshCw className="h-7 w-7 text-success animate-float [animation-delay:400ms]" />
+                <div className="relative z-10">
+                  <div className="w-full h-40 overflow-hidden rounded-t-xl bg-gradient-to-br from-success/5 to-accent/5">
+                    <img 
+                      src={swapsPortfolioImage} 
+                      alt="Swaps & Portfolio Management" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-xl mb-3">🔄 Swaps & Portfolio Management</h3>
+                  <div className="p-6 space-y-3">
+                    <h3 className="font-semibold text-xl">🔄 Swaps & Portfolio Management</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Quickly swap assets and manage portfolios with minimal friction.
                     </p>
