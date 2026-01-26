@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { MUSDLoanCard } from '@/components/dashboard/MUSDLoanCard';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { SwapCard } from '@/components/dex/SwapCard';
 import { AddCollateralModal } from '@/components/modals/AddCollateralModal';
 import { WithdrawModal } from '@/components/modals/WithdrawModal';
+import { DefiChatbot } from '@/components/chat/DefiChatbot';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
@@ -90,6 +91,18 @@ const Dashboard = () => {
 
   const maxWithdraw = Math.max(0, collateral - (borrowed / btcPrice) * 1.5);
 
+  // Memoize chat context to prevent unnecessary re-renders
+  const chatContext = useMemo(() => ({
+    btcPrice,
+    collateral,
+    borrowed,
+    collateralRatio: borrowed > 0 ? ((collateral * btcPrice) / borrowed) * 100 : 0,
+    liquidationPrice: borrowed > 0 ? (borrowed * 1.5) / collateral : 0,
+    availableToWithdraw: maxWithdraw,
+    blockHeight,
+    isConnected,
+  }), [btcPrice, collateral, borrowed, maxWithdraw, blockHeight, isConnected]);
+
   return (
     <PageLayout>
       <section className="bg-[hsl(var(--section-light))] py-8 min-h-[calc(100vh-80px)]">
@@ -154,6 +167,8 @@ const Dashboard = () => {
         maxWithdraw={maxWithdraw}
         btcPrice={btcPrice}
       />
+
+      <DefiChatbot context={chatContext} />
     </PageLayout>
   );
 };
