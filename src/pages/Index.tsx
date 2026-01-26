@@ -2,6 +2,7 @@
 import { useAccount } from 'wagmi';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { FAQSection } from '@/components/faq/FAQSection';
+import { DefiChatbot } from '@/components/chat/DefiChatbot';
 
 import { Bitcoin, TrendingUp, Shield, Zap, DollarSign, Activity, Bot, RefreshCw, CreditCard, CheckCircle, RotateCcw, Droplets } from 'lucide-react';
 
@@ -295,6 +296,9 @@ const Index = () => {
 
       {/* FAQ Section */}
       <FAQSection />
+
+      {/* DeFi Chatbot */}
+      <DefiChatbot />
     </PageLayout>
   );
 };

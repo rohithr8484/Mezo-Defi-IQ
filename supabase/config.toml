@@ -1,1 +1,7 @@
 project_id = "hsajnjzhkrarqyeiamyn"
+
+[functions.arbitrage-scanner]
+verify_jwt = false
+
+[functions.defi-chat]
+verify_jwt = false
