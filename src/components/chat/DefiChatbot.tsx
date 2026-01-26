@@ -80,38 +80,46 @@ export function DefiChatbot({ context }: DefiChatbotProps) {
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 z-50 w-[400px] h-[600px] flex flex-col shadow-2xl border-primary/30 bg-background/95 backdrop-blur-lg animate-scale-in">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/10 to-accent/10">
-            <div className="flex items-center gap-3">
-              <div className="p-2 rounded-full bg-primary/20">
-                <Bot className="h-5 w-5 text-primary" />
+        <>
+          {/* Backdrop overlay - click to close */}
+          <div 
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          <Card className="fixed bottom-6 right-6 z-50 w-[400px] h-[600px] flex flex-col shadow-2xl border-primary/30 bg-background/95 backdrop-blur-lg animate-scale-in">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary/10 to-accent/10">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-primary/20">
+                  <Bot className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-sm">DeFi Strategy Advisor</h3>
+                  <p className="text-xs text-muted-foreground">Powered by AI</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-sm">DeFi Strategy Advisor</h3>
-                <p className="text-xs text-muted-foreground">Powered by AI</p>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={clearMessages}
+                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  title="Clear chat"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                  className="h-8 w-8 hover:bg-destructive/10 hover:text-destructive"
+                  title="Close chat"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
               </div>
             </div>
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={clearMessages}
-                className="h-8 w-8 text-muted-foreground hover:text-foreground"
-                title="Clear chat"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(false)}
-                className="h-8 w-8"
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
 
           {/* Messages */}
           <ScrollArea ref={scrollRef} className="flex-1 p-4">
@@ -227,7 +235,8 @@ export function DefiChatbot({ context }: DefiChatbotProps) {
               </Button>
             </div>
           </div>
-        </Card>
+          </Card>
+        </>
       )}
     </>
   );
