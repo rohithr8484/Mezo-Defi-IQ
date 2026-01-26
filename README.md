@@ -28,7 +28,7 @@ Modular design allows users to stack lending, borrowing, swaps, and liquidity pr
   
 Empowers users to manage exposure and rebalance strategies using real-time insights.
 
-- AI Bot -
+- AI Bot
   
 Proactive risk alerts when collateral ratio is low Personalized strategy recommendations based on your portfolio, Real-time guidance for position management.
 
