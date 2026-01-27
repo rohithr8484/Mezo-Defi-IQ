@@ -30,7 +30,7 @@ Empowers users to manage exposure and rebalance strategies using real-time insig
 
 - AI Bot
   
-Proactive risk alerts when collateral ratio is low Personalized strategy recommendations based on your portfolio, Real-time guidance for position management.
+Proactive risk alerts for collateral, Personalized strategy recommendations based on your portfolio, Real-time guidance for position management.
 
 
 
