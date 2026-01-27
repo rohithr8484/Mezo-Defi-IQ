@@ -73,7 +73,7 @@ Proactive risk alerts for collateral, Personalized strategy recommendations base
 
 ## 🧩 Advanced  Features
 - **Liquidity pools and Yield Strategies** – Deploy idle collateral into optimized yield loops for **passive income generation**.  
-- **MUSD Loans** – AI-driven **auto-collateral MUSD loans** to mitigate liquidation risk.  
+- **MUSD Loans** – AI-driven **MUSD loans** to mitigate liquidation risk.  
 - **Derivatives Expansion** – Upcoming modules for **BTC options**, **perpetuals**, and **structured yield vaults**.
 
 ---
