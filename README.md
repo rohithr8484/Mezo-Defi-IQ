@@ -39,28 +39,27 @@ Proactive risk alerts for collateral, Personalized strategy recommendations base
 
 ## 🔧 Core Capabilities
 
-### ⚡ Cross-Protocol Arbitrage Engine
-- Scans and exploits **MUSD/BTC price disparities** across **Tigris DEX** and **Pyth Oracle** in real time.  
-- **Backend scanner** updates every **400 ms**, identifying arbitrage spreads and pushing **live trade alerts** to the dashboard.  
-- Integrated **Arbitrage Dashboard** visualizes **profit margins**, **trade readiness**, and **capital utilization efficiency** for precision execution.
-
 ### 🔄 Smart Swap Module
 - Implements a **2-step swap flow (Approve → Swap)** with **slippage control** and **transaction status tracking**.  
 - Fetches **real-time price quotes** directly from the **Tigris Router** to guarantee optimal routing and full transparency.  
 - Robust **error handling**, **wallet validation**, and **transaction integrity checks** ensure a smooth, reliable trading experience.
-
-### 📊 Pyth Oracle Integration
-- Utilizes **Pyth Network’s ultra-low-latency BTC/USD feed** (e.g. *$106,780.21*, updated every 400 ms).  
-- **On-chain verification** via **Mezo Mainnet** ensures **accurate, tamper-proof price data**.  
-- Incorporates **confidence intervals** and **timestamp validation** mechanisms for **high-frequency, low-latency trading strategies**.
-
----
 
 ## 💸 Lending & Collateral Framework For MUSD loans
 - **Borrow MUSD against BTC** at a **1 % fixed interest rate** while maintaining **full custody** of your collateral.  
 - Real-time **collateral ratio tracking** and **risk assessment** ensure continuous portfolio visibility.  
 - Dynamically **add**, **withdraw**, or **rebalance collateral** for adaptive liquidity management.  
 - Comprehensive **loan health monitoring** and **ROI analytics** displayed through an intuitive interface.
+
+
+### 📊 Pyth Oracle Integration
+- Utilizes **Pyth Network’s ultra-low-latency BTC/USD feed** (e.g. *$106,780.21*, updated every 400 ms).  
+- **On-chain verification** via **Mezo Mainnet** ensures **accurate, tamper-proof price data**.  
+- Incorporates **confidence intervals** and **timestamp validation** mechanisms for **high-frequency, low-latency trading strategies**.
+
+### ⚡ Cross-Protocol Arbitrage Engine
+- Scans and exploits **MUSD/BTC price disparities** across **Tigris DEX** and **Pyth Oracle** in real time.  
+- **Backend scanner** updates every **400 ms**, identifying arbitrage spreads and pushing **live trade alerts** to the dashboard.  
+- Integrated **Arbitrage Dashboard** visualizes **profit margins**, **trade readiness**, and **capital utilization efficiency** for precision execution.
 
 ---
 
