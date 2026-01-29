@@ -11,6 +11,7 @@ import {
   Clock, Percent, DollarSign, Bitcoin
 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useAccount } from 'wagmi';
 
 interface MUSDLoanCardProps {
   btcPrice: number;
@@ -31,6 +32,7 @@ export const MUSDLoanCard = ({
   onWithdraw, 
   onClose 
 }: MUSDLoanCardProps) => {
+  const { isConnected } = useAccount();
   const [collateralAmount, setCollateralAmount] = useState('');
   const [loanAmount, setLoanAmount] = useState('10000');
   const [ltvRatio, setLtvRatio] = useState([50]);
@@ -101,16 +103,27 @@ export const MUSDLoanCard = ({
 
         <div className="divider-gradient" />
 
-        <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-muted/50">
-            <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
-              <Coins className="h-4 w-4 mr-2" />
-              New Loan
-            </TabsTrigger>
-            <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
-              <Wallet className="h-4 w-4 mr-2" />
-              Your Position
-            </TabsTrigger>
+        {!isConnected ? (
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <div className="p-4 rounded-full bg-muted/50 mb-4">
+              <Wallet className="h-10 w-10 text-muted-foreground" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Connect Your Wallet</h3>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Connect your wallet to access MUSD loans and manage your positions
+            </p>
+          </div>
+        ) : (
+          <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
+            <TabsList className="grid w-full grid-cols-2 bg-muted/50">
+              <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
+                <Coins className="h-4 w-4 mr-2" />
+                New Loan
+              </TabsTrigger>
+              <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
+                <Wallet className="h-4 w-4 mr-2" />
+                Your Position
+              </TabsTrigger>
           </TabsList>
 
           {/* New Loan Tab */}
@@ -393,6 +406,7 @@ export const MUSDLoanCard = ({
             </div>
           </TabsContent>
         </Tabs>
+        )}
       </div>
     </Card>
   );

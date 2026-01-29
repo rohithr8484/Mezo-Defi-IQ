@@ -9,6 +9,7 @@ import {
   Users, Wallet, Gift, Shield
 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { useAccount } from 'wagmi';
 import musdLogo from '@/assets/tokens/musd-logo.png';
 import btcLogo from '@/assets/tokens/btc-logo.png';
 import musdcLogo from '@/assets/tokens/musdc-logo.png';
@@ -322,6 +323,7 @@ const PoolActionPanel = ({ pool, activeTab }: PoolActionProps) => {
 };
 
 export const LiquidityPoolsCard = () => {
+  const { isConnected } = useAccount();
   const [selectedPool, setSelectedPool] = useState<typeof TESTNET_POOLS[0] | null>(null);
   const [activeTab, setActiveTab] = useState('add');
 
@@ -476,26 +478,38 @@ export const LiquidityPoolsCard = () => {
               </Button>
             </div>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-4 bg-muted/50">
-                <TabsTrigger value="add" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Add liquidity
-                </TabsTrigger>
-                <TabsTrigger value="withdraw" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Withdraw
-                </TabsTrigger>
-                <TabsTrigger value="stake" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Stake LP
-                </TabsTrigger>
-                <TabsTrigger value="unstake" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  Unstake LP
-                </TabsTrigger>
-              </TabsList>
-
-              <div className="mt-4">
-                <PoolActionPanel pool={selectedPool} activeTab={activeTab} />
+            {!isConnected ? (
+              <div className="flex flex-col items-center justify-center py-8 text-center">
+                <div className="p-4 rounded-full bg-muted/50 mb-4">
+                  <Wallet className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <h3 className="text-base font-semibold mb-2">Connect Your Wallet</h3>
+                <p className="text-sm text-muted-foreground max-w-xs">
+                  Connect your wallet to add liquidity, withdraw, stake, or unstake LP tokens
+                </p>
               </div>
-            </Tabs>
+            ) : (
+              <Tabs value={activeTab} onValueChange={setActiveTab}>
+                <TabsList className="grid w-full grid-cols-4 bg-muted/50">
+                  <TabsTrigger value="add" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Add liquidity
+                  </TabsTrigger>
+                  <TabsTrigger value="withdraw" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Withdraw
+                  </TabsTrigger>
+                  <TabsTrigger value="stake" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Stake LP
+                  </TabsTrigger>
+                  <TabsTrigger value="unstake" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    Unstake LP
+                  </TabsTrigger>
+                </TabsList>
+
+                <div className="mt-4">
+                  <PoolActionPanel pool={selectedPool} activeTab={activeTab} />
+                </div>
+              </Tabs>
+            )}
           </div>
         )}
 
