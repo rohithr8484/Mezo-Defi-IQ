@@ -9,7 +9,6 @@ import { DefiChatbot } from '@/components/chat/DefiChatbot';
 import { getBTCPrice } from '@/lib/pyth';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
-import { Wallet } from 'lucide-react';
 
 const Dashboard = () => {
   const { isConnected } = useAccount();
@@ -107,49 +106,39 @@ const Dashboard = () => {
     <PageLayout>
       <section className="bg-[hsl(var(--section-light))] py-8 min-h-[calc(100vh-80px)]">
         <div className="container mx-auto px-4">
-          {!isConnected ? (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <Wallet className="h-16 w-16 text-muted-foreground mb-4" />
-              <h2 className="text-2xl font-bold mb-2">Connect Your Wallet</h2>
-              <p className="text-muted-foreground max-w-md">
-                Please connect your wallet to access the dashboard and manage your positions.
+          <div className="space-y-6">
+            <div className="text-center space-y-2 mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold gradient-text">
+                📊 Dashboard
+              </h2>
+              <p className="text-muted-foreground">
+                Manage your positions, swap tokens, and borrow MUSD
               </p>
             </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="text-center space-y-2 mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold gradient-text">
-                  📊 Dashboard
-                </h2>
-                <p className="text-muted-foreground">
-                  Manage your positions, swap tokens, and borrow MUSD
-                </p>
-              </div>
 
-              <div className="animate-fade-in">
-                <StatsCard
-                  btcPrice={btcPrice}
-                  totalCollateral={collateral}
-                  totalBorrowed={borrowed}
-                  blockHeight={blockHeight}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
-                <SwapCard />
-                
-                <MUSDLoanCard
-                  btcPrice={btcPrice}
-                  collateral={collateral}
-                  borrowed={borrowed}
-                  onBorrow={handleBorrow}
-                  onAddCollateral={() => setAddCollateralOpen(true)}
-                  onWithdraw={() => setWithdrawOpen(true)}
-                  onClose={handleClosePosition}
-                />
-              </div>
+            <div className="animate-fade-in">
+              <StatsCard
+                btcPrice={btcPrice}
+                totalCollateral={collateral}
+                totalBorrowed={borrowed}
+                blockHeight={blockHeight}
+              />
             </div>
-          )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in [animation-delay:200ms]">
+              <SwapCard />
+              
+              <MUSDLoanCard
+                btcPrice={btcPrice}
+                collateral={collateral}
+                borrowed={borrowed}
+                onBorrow={handleBorrow}
+                onAddCollateral={() => setAddCollateralOpen(true)}
+                onWithdraw={() => setWithdrawOpen(true)}
+                onClose={handleClosePosition}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
