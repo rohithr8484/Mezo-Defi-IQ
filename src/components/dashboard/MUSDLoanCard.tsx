@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit';
 import { 
   Coins, TrendingUp, AlertTriangle, CheckCircle2, Info, Sparkles, 
   Shield, Wallet, ArrowUpCircle, ArrowDownCircle, XCircle, CreditCard,
@@ -74,46 +75,64 @@ export const MUSDLoanCard = ({
   const positionStatus = getRatioStatus(collateralRatio);
 
   return (
-    <Card className="p-6 glass-panel border-primary/20 hover-lift overflow-hidden relative">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-      
-      <div className="space-y-6 relative z-10">
-        {/* Header */}
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30">
-              <CreditCard className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold gradient-text-gold">
-                MUSD Loans
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Bitcoin-backed stablecoin loans
-              </p>
-            </div>
-          </div>
-          <div className="stat-badge flex items-center gap-1">
-            <Sparkles className="h-3 w-3" />
-            {apr.toFixed(1)}% APR
-          </div>
-        </div>
+    <RainbowConnectButton.Custom>
+      {({ openConnectModal }) => {
+        const canOpenConnect = typeof openConnectModal === 'function';
 
-        <div className="divider-gradient" />
+        const handleRequireWallet = (fn: () => void) => {
+          if (!isConnected) {
+            if (canOpenConnect) openConnectModal();
+            return;
+          }
+          fn();
+        };
 
-        <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-muted/50">
-            <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
-              <Coins className="h-4 w-4 mr-2" />
-              New Loan
-            </TabsTrigger>
-            <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
-              <Wallet className="h-4 w-4 mr-2" />
-              Your Position
-            </TabsTrigger>
-          </TabsList>
+        const mintDisabled = isConnected ? desiredBorrow <= 0 : !canOpenConnect;
+        const addCollateralDisabled = isConnected ? false : !canOpenConnect;
+        const withdrawDisabled = isConnected ? availableToWithdraw <= 0 : !canOpenConnect;
+        const repayDisabled = isConnected ? borrowed <= 0 : !canOpenConnect;
+
+        return (
+          <Card className="p-6 glass-panel border-primary/20 hover-lift overflow-hidden relative">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            
+            <div className="space-y-6 relative z-10">
+              {/* Header */}
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30">
+                    <CreditCard className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold gradient-text-gold">
+                      MUSD Loans
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      Bitcoin-backed stablecoin loans
+                    </p>
+                  </div>
+                </div>
+                <div className="stat-badge flex items-center gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  {apr.toFixed(1)}% APR
+                </div>
+              </div>
+
+              <div className="divider-gradient" />
+
+              <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
+                <TabsList className="grid w-full grid-cols-2 bg-muted/50">
+                  <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
+                    <Coins className="h-4 w-4 mr-2" />
+                    New Loan
+                  </TabsTrigger>
+                  <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
+                    <Wallet className="h-4 w-4 mr-2" />
+                    Your Position
+                  </TabsTrigger>
+                </TabsList>
 
           {/* New Loan Tab */}
           <TabsContent value="borrow" className="space-y-6">
@@ -250,8 +269,8 @@ export const MUSDLoanCard = ({
             </div>
 
             <Button
-              onClick={handleMintMUSD}
-              disabled={!isConnected || desiredBorrow <= 0}
+              onClick={() => handleRequireWallet(handleMintMUSD)}
+              disabled={mintDisabled}
               variant="hero"
               size="lg"
               className="w-full h-12 text-base"
@@ -364,9 +383,9 @@ export const MUSDLoanCard = ({
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-3">
               <Button
-                onClick={onAddCollateral}
+                onClick={() => handleRequireWallet(onAddCollateral)}
                 size="lg"
-                disabled={!isConnected}
+                disabled={addCollateralDisabled}
                 className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:opacity-90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98] font-semibold transition-all"
               >
                 <ArrowUpCircle className="mr-2 h-4 w-4" />
@@ -374,10 +393,10 @@ export const MUSDLoanCard = ({
               </Button>
               
               <Button
-                onClick={onWithdraw}
+                onClick={() => handleRequireWallet(onWithdraw)}
                 variant="outline"
                 size="lg"
-                disabled={!isConnected || availableToWithdraw <= 0}
+                disabled={withdrawDisabled}
                 className="flex-1 min-w-[120px] h-11 border-border hover:border-accent/50 hover:bg-accent/10 transition-all"
               >
                 <ArrowDownCircle className="mr-2 h-4 w-4" />
@@ -385,9 +404,9 @@ export const MUSDLoanCard = ({
               </Button>
               
               <Button
-                onClick={onClose}
+                onClick={() => handleRequireWallet(onClose)}
                 size="lg"
-                disabled={!isConnected || borrowed <= 0}
+                disabled={repayDisabled}
                 className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-secondary/80 to-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_15px_hsl(var(--secondary)/0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <XCircle className="mr-2 h-4 w-4" />
@@ -395,8 +414,11 @@ export const MUSDLoanCard = ({
               </Button>
             </div>
           </TabsContent>
-        </Tabs>
-      </div>
-    </Card>
+              </Tabs>
+            </div>
+          </Card>
+        );
+      }}
+    </RainbowConnectButton.Custom>
   );
 };
