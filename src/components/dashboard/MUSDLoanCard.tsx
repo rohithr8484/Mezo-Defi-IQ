@@ -103,27 +103,16 @@ export const MUSDLoanCard = ({
 
         <div className="divider-gradient" />
 
-        {!isConnected ? (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="p-4 rounded-full bg-muted/50 mb-4">
-              <Wallet className="h-10 w-10 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Connect Your Wallet</h3>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Connect your wallet to access MUSD loans and manage your positions
-            </p>
-          </div>
-        ) : (
-          <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 bg-muted/50">
-              <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
-                <Coins className="h-4 w-4 mr-2" />
-                New Loan
-              </TabsTrigger>
-              <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
-                <Wallet className="h-4 w-4 mr-2" />
-                Your Position
-              </TabsTrigger>
+        <Tabs defaultValue={hasActivePosition ? "position" : "borrow"} className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 bg-muted/50">
+            <TabsTrigger value="borrow" className="data-[state=active]:bg-primary/20">
+              <Coins className="h-4 w-4 mr-2" />
+              New Loan
+            </TabsTrigger>
+            <TabsTrigger value="position" className="data-[state=active]:bg-accent/20">
+              <Wallet className="h-4 w-4 mr-2" />
+              Your Position
+            </TabsTrigger>
           </TabsList>
 
           {/* New Loan Tab */}
@@ -262,13 +251,13 @@ export const MUSDLoanCard = ({
 
             <Button
               onClick={handleMintMUSD}
-              disabled={desiredBorrow <= 0}
+              disabled={!isConnected || desiredBorrow <= 0}
               variant="hero"
               size="lg"
               className="w-full h-12 text-base"
             >
               <Coins className="mr-2 h-5 w-5" />
-              Mint {desiredBorrow.toLocaleString()} MUSD
+              {!isConnected ? 'Connect Wallet' : `Mint ${desiredBorrow.toLocaleString()} MUSD`}
             </Button>
           </TabsContent>
 
@@ -377,36 +366,36 @@ export const MUSDLoanCard = ({
               <Button
                 onClick={onAddCollateral}
                 size="lg"
+                disabled={!isConnected}
                 className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground hover:opacity-90 shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-[1.02] active:scale-[0.98] font-semibold transition-all"
               >
                 <ArrowUpCircle className="mr-2 h-4 w-4" />
-                Add Collateral
+                {!isConnected ? 'Connect Wallet' : 'Add Collateral'}
               </Button>
               
               <Button
                 onClick={onWithdraw}
                 variant="outline"
                 size="lg"
-                disabled={availableToWithdraw <= 0}
+                disabled={!isConnected || availableToWithdraw <= 0}
                 className="flex-1 min-w-[120px] h-11 border-border hover:border-accent/50 hover:bg-accent/10 transition-all"
               >
                 <ArrowDownCircle className="mr-2 h-4 w-4" />
-                Withdraw
+                {!isConnected ? 'Connect Wallet' : 'Withdraw'}
               </Button>
               
               <Button
                 onClick={onClose}
                 size="lg"
-                disabled={borrowed <= 0}
+                disabled={!isConnected || borrowed <= 0}
                 className="flex-1 min-w-[120px] h-11 bg-gradient-to-r from-secondary/80 to-secondary text-secondary-foreground hover:opacity-90 shadow-[0_0_15px_hsl(var(--secondary)/0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 <XCircle className="mr-2 h-4 w-4" />
-                Repay & Close
+                {!isConnected ? 'Connect Wallet' : 'Repay & Close'}
               </Button>
             </div>
           </TabsContent>
         </Tabs>
-        )}
       </div>
     </Card>
   );
