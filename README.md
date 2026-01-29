@@ -147,7 +147,7 @@ Borrow → Mint MUSD
 MUSD appears in your wallet
 
 - **Network:** Mezo Mainnet    **Chain ID:** `31612`
-- **Network:** Mezo Testnet    **Chain ID:** '31611
+- **Network:** Mezo Testnet    **Chain ID:** `31611`
 
 
 ## ⚡ Mezo Testnet and Mainnet Configuration & Contracts
