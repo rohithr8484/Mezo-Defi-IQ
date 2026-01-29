@@ -12,7 +12,8 @@ import {
   Clock, Percent, DollarSign, Bitcoin
 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useAccount } from 'wagmi';
+import { useAccount, useBalance } from 'wagmi';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface MUSDLoanCardProps {
   btcPrice: number;
@@ -33,16 +34,22 @@ export const MUSDLoanCard = ({
   onWithdraw, 
   onClose 
 }: MUSDLoanCardProps) => {
-  const { isConnected } = useAccount();
-  const [collateralAmount, setCollateralAmount] = useState('');
+  const { isConnected, address } = useAccount();
+  const { data: balance } = useBalance({ address });
   const [loanAmount, setLoanAmount] = useState('10000');
   const [ltvRatio, setLtvRatio] = useState([50]);
   const [loanTerm, setLoanTerm] = useState('12');
+
+  // Real wallet balance
+  const walletBalance = balance ? parseFloat(balance.formatted) : 0;
 
   // Calculate loan details based on desired borrow amount
   const desiredBorrow = parseFloat(loanAmount || '0');
   const requiredCollateralValue = desiredBorrow / (ltvRatio[0] / 100);
   const requiredCollateralBTC = requiredCollateralValue / btcPrice;
+  
+  // Check if user has enough balance
+  const hasInsufficientBalance = requiredCollateralBTC > walletBalance;
   
   // Calculate APR based on term (simplified calculation)
   const baseAPR = 11.9;
@@ -58,6 +65,10 @@ export const MUSDLoanCard = ({
 
   const handleMintMUSD = () => {
     const collateralBTC = requiredCollateralBTC;
+    // Validate wallet has enough balance
+    if (hasInsufficientBalance) {
+      return;
+    }
     if (collateralBTC > 0 && desiredBorrow > 0) {
       onBorrow(collateralBTC, desiredBorrow);
       setLoanAmount('10000');
@@ -87,8 +98,8 @@ export const MUSDLoanCard = ({
           fn();
         };
 
-        const mintDisabled = isConnected ? desiredBorrow <= 0 : !canOpenConnect;
-        const addCollateralDisabled = isConnected ? false : !canOpenConnect;
+        const mintDisabled = isConnected ? (desiredBorrow <= 0 || hasInsufficientBalance) : !canOpenConnect;
+        const addCollateralDisabled = isConnected ? walletBalance <= 0 : !canOpenConnect;
         const withdrawDisabled = isConnected ? availableToWithdraw <= 0 : !canOpenConnect;
         const repayDisabled = isConnected ? borrowed <= 0 : !canOpenConnect;
 
@@ -154,6 +165,29 @@ export const MUSDLoanCard = ({
               </p>
             </div>
 
+            {/* Wallet Balance Info */}
+            {isConnected && (
+              <div className="p-3 rounded-lg bg-muted/50 border border-border">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Your Wallet Balance</span>
+                  <span className="text-sm font-semibold">{walletBalance.toFixed(8)} BTC</span>
+                </div>
+                <p className="text-xs text-muted-foreground text-right">
+                  ≈ ${(walletBalance * btcPrice).toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                </p>
+              </div>
+            )}
+
+            {/* Insufficient Balance Warning */}
+            {isConnected && hasInsufficientBalance && desiredBorrow > 0 && (
+              <Alert variant="destructive">
+                <AlertTriangle className="h-4 w-4" />
+                <AlertDescription>
+                  Insufficient balance. You need {requiredCollateralBTC.toFixed(5)} BTC but only have {walletBalance.toFixed(8)} BTC.
+                </AlertDescription>
+              </Alert>
+            )}
+
             {/* Key Metrics */}
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-muted/40 border border-border">
@@ -161,7 +195,7 @@ export const MUSDLoanCard = ({
                   <Bitcoin className="h-3 w-3" />
                   Minimum collateral
                 </div>
-                <p className="text-xl font-bold text-foreground">
+                <p className={`text-xl font-bold ${isConnected && hasInsufficientBalance ? 'text-destructive' : 'text-foreground'}`}>
                   ₿{requiredCollateralBTC.toFixed(5)}
                 </p>
                 <p className="text-xs text-muted-foreground">
@@ -276,7 +310,11 @@ export const MUSDLoanCard = ({
               className="w-full h-12 text-base"
             >
               <Coins className="mr-2 h-5 w-5" />
-              {!isConnected ? 'Connect Wallet' : `Mint ${desiredBorrow.toLocaleString()} MUSD`}
+              {!isConnected 
+                ? 'Connect Wallet' 
+                : hasInsufficientBalance 
+                  ? 'Insufficient Balance'
+                  : `Mint ${desiredBorrow.toLocaleString()} MUSD`}
             </Button>
           </TabsContent>
 
