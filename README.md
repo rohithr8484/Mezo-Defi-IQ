@@ -132,10 +132,23 @@ Our platform leverages the security and efficiency of:
 
 <img width="407" height="372" alt="image" src="https://github.com/user-attachments/assets/a3ff980e-d0bc-4069-a0ac-c1b3b7f0f77f" />
 
-### **Network**
-- **Network:** Mezo Mainnet  
-- **Chain ID:** `31612`
-  
+### **Mezo Network Configuration**
+
+Connect your wallet to Mezo Testnet (RPC: https://rpc.test.mezo.org, chain ID 31611).
+
+Get BTC + MEZO from faucet ( https://faucet.test.mezo.org/ )
+
+Open Mezo website (testnet)
+
+Deposit testnet BTC as collateral
+
+Borrow → Mint MUSD
+
+MUSD appears in your wallet
+
+- **Network:** Mezo Mainnet    **Chain ID:** `31612`
+- **Network:** Mezo Testnet    **Chain ID:** '31611
+
 
 ## ⚡ Mezo Testnet and Mainnet Configuration & Contracts
 
