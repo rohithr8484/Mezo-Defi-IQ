@@ -24,7 +24,7 @@ Enables users to access and deploy MUSD quickly for liquidity needs, trading, an
   
 Empowers users to manage exposure and rebalance strategies using real-time insights.
 
-**AI Bot**
+**AI Powered Bot**
   
 Proactive risk alerts for collateral, Personalized strategy recommendations based on your portfolio, Real-time guidance for position management.
 
