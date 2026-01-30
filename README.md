@@ -18,7 +18,7 @@ Brings together non-collateralized access to BTC, MUSD, flexible MUSD borrowing,
 
 **Capital-efficient access to MUSD**
   
-Enables users to access and deploy MUSD quickly for liquidity needs, trading, and advanced DeFi strategies—without traditional collateral friction. Modular design allows users to borrowing, swaps, and liquidity pools provisioning across protocols.
+Enables users to access and deploy MUSD quickly for liquidity needs, trading, and advanced DeFi strategies—without traditional collateral friction. Modular design allows users to borrowing, swaps, and provide liquidity to pools provisioning across protocols.
 
 **Risk-aware portfolio optimization**
   
