@@ -14,7 +14,7 @@ Users can deposit BTC which can be converted to MUSD for bitcoin based loans
 
 **Unified MUSD deployment platform**
   
-Brings together non-collateralized access to BTC, MUSD, flexible MUSD borrowing, seamless asset swaps, and  liquidity into a single cohesive platform.
+Brings together non-collateralized access to BTC, MUSD, flexible MUSD borrowing, seamless asset swaps, and provide liquidity to pools into a single cohesive platform.
 
 **Capital-efficient access to MUSD**
   
@@ -27,8 +27,6 @@ Empowers users to manage exposure and rebalance strategies using real-time insig
 **AI Bot**
   
 Proactive risk alerts for collateral, Personalized strategy recommendations based on your portfolio, Real-time guidance for position management.
-
-
 
 <img width="920" height="600" alt="mezo_defi_logo_header" src="https://github.com/user-attachments/assets/ec0977de-25f6-4a00-b857-62513b46e90f" />
 <p align="left"> <img src="https://img.shields.io/badge/Mezo-pink?style=flat-square" /> <img src="https://img.shields.io/badge/Challenge-yellow?style=flat-square" /> <img src="https://img.shields.io/badge/Liquidity-blue?style=flat-square" /> </p>
