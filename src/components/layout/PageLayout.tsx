@@ -40,9 +40,9 @@ export const PageLayout = ({ children }: PageLayoutProps) => {
                   </div>
                   <div>
                     <h1 className="text-2xl font-bold text-[hsl(var(--navbar-foreground))]">
-                      Mezo DeFi
+                      Shenzu Spending
                     </h1>
-                    <p className="text-xs text-[hsl(var(--navbar-foreground)/0.7)]">Bitcoin-Backed Stablecoin Protocol</p>
+                    <p className="text-xs text-[hsl(var(--navbar-foreground)/0.7)]">Mezo Defi</p>
                   </div>
                 </Link>
                 
