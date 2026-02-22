@@ -98,6 +98,8 @@ Create a `.env` file:
 PRIVATE_KEY=your_private_key
 MEZO_RPC_URL=https://mainnet.mezo.validationcloud.io/v1/YOUR_API_KEY
 MEZO_EXPLORER_API_KEY=your_explorer_api_key
+MEZO_MATS_RPC_URL=https://rpc.test.mezo.org
+MEZO_MAINNET_RPC_URL=https://mainnet.mezo.public.validationcloud.io
 REPORT_GAS=true
 ```
 
