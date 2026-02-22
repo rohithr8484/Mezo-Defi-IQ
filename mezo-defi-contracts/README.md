@@ -68,7 +68,7 @@ npm install
 ### Compile
 
 ```bash
-npm run compile
+npx hardhat compile
 ```
 
 ### Test
@@ -80,15 +80,15 @@ npm run test
 ### Deploy
 
 ```bash
-# Local
-npm run deploy:local
 
 # Mezo Testnet
-npm run deploy:testnet
+npx hardhat run scripts/deploy.ts --network mezo
+
+# Mezo Mats Tesnet
+npx hardhat run scripts/deploy.ts --network mezoMats 
 
 # Mezo Mainnet
-npm run deploy:mezo
-```
+npx hardhat run scripts/deploy.ts --network mezo```
 
 ## ⚙️ Configuration
 
