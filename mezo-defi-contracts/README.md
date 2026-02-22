@@ -34,7 +34,7 @@ A no-loss prize savings pool where users deposit MUSD to earn prize entries:
 - `withdraw(uint256 amount)` - Withdraw MUSD from vault  
 - `claimPrize()` - Claim prize if selected as winner
 
-**Deployed Address:** `0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186`
+**Deployed Address:** `0x77922c638Da9a4fBC6f2f3B04ae625632deCD12F`
 
 ### Staking.sol
 
@@ -49,7 +49,7 @@ LP token staking contract for Mezo liquidity providers:
 - `unstake(uint256 amount)` - Unstake LP tokens
 - `claimRewards()` - Claim accumulated MATS rewards
 
-**Deployed Address:** `0x16A76d3cd3C1e3CE843C6680d6B37E9116b5C706`
+**Deployed Address:** `0x0E6756cfc93f2b90fC24992F794940d6f5a6912d`
 
 ## 🛠 Development
 
